@@ -31,3 +31,10 @@ resource "google_compute_network" "vpc_network" {
   auto_create_subnetworks = "true"
 }
 
+## creating a bucket ##
+
+resource "google_storage_bucket" "my_bucket" {
+  name          = "world_bank_raw"
+  location      = "US"
+  force_destroy = true
+}
