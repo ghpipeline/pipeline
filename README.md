@@ -89,7 +89,7 @@ gcloud auth application-default login
 
 ## Infrastructure ##
 
-After logging into Terraform Cloud and making an account/profiile, we need to download Hashicorp and Terraform on our local machine. We are using MacOS
+After logging into Terraform Cloud and making an account/profiile, we need to download Hashicorp and Terraform on our local machine. We are using MacOS.
 
 ```
 brew tap hashicorp/tap
@@ -103,7 +103,20 @@ terraform -help
 
 In the main github repo, make a sub-directory for you terraform project. For our project, this can be found here: [terraform](terraform)
 
-Then follow the quick start guide for connecting Terraform with GCP here: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started
+Next you have to connect GCP with Terrafrom. We followed the quick start guide here: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started
+
+
+IMPORTANT: A key aspect of this is creating a service account with correct permissions. We added both Storage Admin. That service account then needs to export the creds as a .json file and then be saved into Terraform Cloud as an envrionment variable.
 
 the main.tf file is where the standard GCP config occurs. There you will see code for creating VM instances, buckets etc. This can be found here: [main.tf](terraform/main.tf)
 
+I also added a backed.tf file that stores some base level data for best practice. This can be found here: [backend.tf](terraform/backend.tf)
+
+
+Once your files are ready. You can run 
+
+```
+terraform apply
+```
+
+And BOOM. That then creates all infrastructure in GCP without needing to manually click and point.
