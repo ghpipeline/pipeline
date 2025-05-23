@@ -103,3 +103,5 @@ terraform -help
 
 In the main github repo, make a sub-directory for you terraform project. For our project, this can be found here: [terraform](terraform)
 
+Then follow the quick start guide for connecting Terraform with GCP here: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started
+
