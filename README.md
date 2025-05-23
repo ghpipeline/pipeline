@@ -108,6 +108,8 @@ Next you have to connect GCP with Terrafrom. We followed the quick start guide h
 
 IMPORTANT: A key aspect of this is creating a service account with correct permissions. We added both Storage Admin. That service account then needs to export the creds as a .json file and then be saved into Terraform Cloud as an envrionment variable.
 
+Terraform stores files as .tf files.
+
 the main.tf file is where the standard GCP config occurs. There you will see code for creating VM instances, buckets etc. This can be found here: [main.tf](terraform/main.tf)
 
 I also added a backed.tf file that stores some base level data for best practice. This can be found here: [backend.tf](terraform/backend.tf)
