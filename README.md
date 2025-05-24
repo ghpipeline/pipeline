@@ -8,6 +8,7 @@
 - [Data Source](#data-source)
 - [Storage](#storage)
 - [Infrastructure](#infrastructure)
+- [Transform](#transform)
 
 ## Overview ##
 
@@ -124,3 +125,10 @@ terraform apply
 ```
 
 And BOOM. That then creates all infrastructure in GCP without needing to manually click and point.
+
+
+## Transform ##
+
+For the sake of column name consistency, we are going to create a transform folder that will be run in every data pull to create consistency with column names. For best practice, we want all lower case letters with underscores beteen each word. Here is the folder [transform](transform/transform.py)
+
+
