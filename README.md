@@ -58,7 +58,7 @@ $ source .venv-3.10/bin/activate
 
 For the source of our data, we are going to be pulling from the World Bank dataset. This is a free dataset with a REST API that can be pulled by anyone. The api link is https://api.worldbank.org/v2/
 
-Here is the link the file: [data pull](datapull.py)
+Here is the link the file: [data pull](scripts/datapull.py)
 
 Using the link above, we are able to call a json response from the REST API and convert it to a dataframe.
 
