@@ -47,5 +47,5 @@ resource "google_storage_bucket" "my_bucket" {
 resource "google_storage_bucket_object" "subfolder" {
   name   = "gdp_data/"
   bucket = "world_bank_raw"
-  content = ""  # creates an empty object that looks like a folder
+  content = "/dev/null" # creates an empty object that looks like a folder
 }
