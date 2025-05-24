@@ -1,4 +1,7 @@
-##specifying the basic google congig ##
+## the following code creates the various items in a our GCP environment ##
+
+
+##specifying the basic Google config ##
 
 provider "google" {
   project = "globalhealthdatascience"
@@ -6,7 +9,7 @@ provider "google" {
   zone    = "us-central1-c"
 }
 
-##adding a vm for running cloud jobs## 
+##adding a VM for running cloud jobs## 
 
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
@@ -37,4 +40,12 @@ resource "google_storage_bucket" "my_bucket" {
   name          = "world_bank_raw"
   location      = "US"
   force_destroy = true
+}
+
+#adding a subfolder
+
+resource "google_storage_bucket" "subfolder" {
+  name   = "world_bank_raw/gdp_data/"
+  bucket = "world_bank_raw"
+  content = ""  # creates an empty object that looks like a folder
 }
