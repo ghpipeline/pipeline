@@ -28,6 +28,18 @@ if isinstance(data, list) and len(data) > 1:
     
     df['value'] = df['value'].astype(float)
     df = df.sort_values(by='date', ascending=False)
+    
+    ## Generate a dynamic filename based on the current date. ##
+    ## A string representing the filename with a date-based naming convention. ##
+    today = pd.Timestamp.now().normalize()
+    today_date = today.strftime("%m%d%y")  # MMDDYY format
+    today_date_short = today.strftime("%m%y")  # MMYY format
+  
+    ## Create a dynamic naming convention using the date ##
+    dynamic_filename = f"gdp_data_{today_date}.csv"
+    print (dynamic_filename)
+
+
 
     print(df.head())
 else:
