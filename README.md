@@ -9,6 +9,7 @@
 - [Storage](#storage)
 - [Infrastructure](#infrastructure)
 - [Transform](#transform)
+- [Data Warehouse](#datawarehouse)
 
 ## Overview ##
 
@@ -35,6 +36,7 @@ This is the current proposed system. This will be a working draft and will updat
 - **Storage**: Google Cloud Storage (GCS)
 - **Orchestration**: AirFlow
 - **Transformations**: DBT
+- **Data Warehouse**: Google BigQuerey
 
 ![pipeline-diagram-fixed](https://github.com/user-attachments/assets/d6f3c4ac-e957-4739-a688-2b13aa26e0e9)
 
@@ -130,5 +132,16 @@ And BOOM. That then creates all infrastructure in GCP without needing to manuall
 ## Transform ##
 
 For the sake of column name consistency, we are going to create a transform folder that will be run in every data pull to create consistency with column names. For best practice, we want all lower case letters with underscores beteen each word. Here is the folder [transform](transform/transformer.py)
+
+
+## Data Warehouse ##
+
+Basic Outlne: https://cloud.google.com/bigquery?hl=en
+
+We are going to be useing Google BigQuery for our datawarehouse as opposed to Snowflake (our standard too). This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
+
+It should be noted that we are setting this up in Terraform. First we must setup a dataset to put differnt tables inside of. We are calling it "world_bank_dataset".
+
+Then we are going to make our first table. We are going to call this "gdp_table". All configuration code will be found in the main.tf file here: [main.tf](terraform/main.tf)
 
 
