@@ -115,9 +115,17 @@ IMPORTANT: A key aspect of this is creating a service account with correct permi
 
 Terraform stores files as .tf files.
 
-the main.tf file is where the standard GCP config occurs. There you will see code for creating VM instances, buckets etc. This can be found here: [main.tf](terraform/main.tf)
+For the sake of organization, I separated my .tf scripts into differnt sections based on the differnt GCP objects that I am trying to create.
 
-I also added a backed.tf file that stores some base level data for best practice. This can be found here: [backend.tf](terraform/backend.tf)
+The main.tf file is where the standard GCP config occurs including project name, region and zone. There you will see code for creating VM instances, buckets etc. This can be found here: [main.tf](terraform/main.tf)
+
+The backend.tf file that stores some base level data for best practice including organization and workspace name. This can be found here: [backend.tf](terraform/backend.tf)
+
+The buckets.tf file sets up Google buckets and subfolders that will be used to store .csv files. This can be found here: [buckets.tf](terraform/buckets.tf)
+
+The bigquerey.tf file creates our sql-style database within the GCP eco-system that will be used to connect data stored in buckets into an actual datawarehouse. NOTE: This will be referenced later in the READ.md  This can be found here: [bigquerey.tf](terraform/bigquerey.tf)
+
+The virtualmachines.tf file will be used to configure a VM that is needed to run GCP cloud scripts. We will be connecting our orchestration to this VM. This can be found here: [virtualmachines.tf](terraform/virtualmachines.tf)
 
 
 Once your files are ready. You can run 
