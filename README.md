@@ -150,6 +150,6 @@ We are going to be useing Google BigQuery for our datawarehouse as opposed to Sn
 
 It should be noted that we are setting this up in Terraform. First we must setup a dataset to put differnt tables inside of. We are calling it "world_bank_dataset".
 
-Then we are going to make our first table. We are going to call this "gdp_table". All configuration code will be found in the main.tf file here: [main.tf](terraform/main.tf)
+Then we are going to make our first table. We are going to call this "gdp_table". All configuration code will be found in the bigquerey.tf file here: [bigquerey.tf](terraform/bigquerey.tf)
 
 
