@@ -11,7 +11,7 @@ if __name__ == "__main__":
             url="https://github.com/ghpipeline/pipeline.git",
             credentials={"access_token": Secret.load("git-hub-access-token")}
         ),
-        entrypoint="scripts/prefectdatapull.py.py:gdp_pipeline",
+        entrypoint="scripts/prefectdatapull.py:gdp_pipeline",
     ).deploy(
         name="gdp_pipeline",
         work_pool_name="gcp-cloud-run"
