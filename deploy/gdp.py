@@ -9,11 +9,11 @@ if __name__ == "__main__":
     flow.from_source(
         source=GitRepository(
             url="https://github.com/rookcap/prefect-legacy.git",
-            credentials={"access_token": Secret.load("github-access-token")}
+            credentials={"access_token": Secret.load("git-hub-access-token")}
         ),
         entrypoint="core-values.py:CORE_VALUES",
     ).deploy(
         name="CORE-VALUES",
-        work_pool_name="legacy-managed-pool-test-dustin",
+        work_pool_name="gcp-cloud-run",
         job_variables={"env": {"EXTRA_PIP_PACKAGES": "postmarker snowflake-connector-python==3.7.0 simple_salesforce==1.12.6 pandas snowflake-sqlalchemy==1.7.1 google-cloud-secret-manager==2.20.2 google-cloud-storage==2.18.2 prefect-gcp prefect-snowflake==0.28.3 prefect-dbt==0.6.6 pyarrow==19.0.1"} },
     )
