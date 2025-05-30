@@ -47,7 +47,3 @@ def gdp_pipeline(country: str = "US", indicator: str = "NY.GDP.MKTP.CD"):
     filename = save_to_csv(df)
     print(f"Data saved to {filename}")
     print(df.head())
-
-
-if __name__ == "__main__":
-    gdp_pipeline()
