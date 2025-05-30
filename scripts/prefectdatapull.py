@@ -8,6 +8,7 @@ def fetch_gdp_data(country: str, indicator: str, per_page: int = 100) -> list:
     url = f"https://api.worldbank.org/v2/country/{country}/indicator/{indicator}?format=json&per_page={per_page}"
     response = requests.get(url)
     data = response.json()
+    print(data)
     return data
 
 
