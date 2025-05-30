@@ -11,7 +11,7 @@ if __name__ == "__main__":
             url="https://github.com/rookcap/prefect-legacy.git",
             credentials={"access_token": Secret.load("git-hub-access-token")}
         ),
-        entrypoint="core-values.py:CORE_VALUES",
+        entrypoint="scripts/datapull.py:CORE_VALUES",
     ).deploy(
         name="CORE-VALUES",
         work_pool_name="gcp-cloud-run"
