@@ -8,7 +8,7 @@ if __name__ == "__main__":
     # use a personal access token stored in Secret block to access private Rook repo
     flow.from_source(
         source=GitRepository(
-            url="https://github.com/rookcap/prefect-legacy.git",
+            url="https://github.com/ghpipeline/pipeline.git",
             credentials={"access_token": Secret.load("git-hub-access-token")}
         ),
         entrypoint="scripts/prefectdatapull.py:gdp_pipeline",
