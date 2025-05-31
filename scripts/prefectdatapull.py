@@ -38,7 +38,7 @@ def process_data(data: list) -> pd.DataFrame:
 def save_to_csv(df: pd.DataFrame) -> str:
     today = pd.Timestamp.now().normalize()
     today_date = today.strftime("%m%d%y")
-    filename = f"gdp_data_{today_date}.csv"
+    f"/tmp/gdp_data_{today_date}.csv"
     df.to_csv(filename, index=False)
     return filename
 
