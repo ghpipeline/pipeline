@@ -2,13 +2,13 @@ numpy==2.2.6
 pandas==2.2.3
 requests==2.32.3
 
-# Airflow compatibility pins
-pendulum==2.1.2              # Airflow expects <3.0
-sqlalchemy==1.4.49           # Airflow requires <2.0, >=1.4.24
-jinja2==3.1.2                # Safe and compatible
-typing-extensions==4.7.1     # Airflow needs a stable version
-typing-inspection==0.4.0     # Used by newer versions of pydantic and others
-httpcore==0.16.3             # Required by older httpx if used
-pydantic==1.10.13            # Airflow-compatible if needed
-humanize==4.8.0              # Optional: airflow uses it in UI
+pendulum==2.1.2
+sqlalchemy==1.4.49
+jinja2==3.1.2
+typing-extensions==4.12.0        
+typing-inspection==0.4.0
+httpcore==0.16.3
+pydantic==1.10.13
+humanize==4.8.0
+
 
