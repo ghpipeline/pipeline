@@ -1,3 +1,4 @@
+google-cloud-storage==2.16.0
 httpcore==0.16.3
 humanize==4.8.0
 jinja2==3.1.2
@@ -11,5 +12,7 @@ requests==2.32.3
 sqlalchemy==1.4.49
 typing-extensions==4.12.0        
 typing-inspection==0.4.0
+
+
 
 
