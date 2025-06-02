@@ -14,7 +14,9 @@
 ## Overview ##
 
 
-Due to the high-costs of funding for health data science and biotecholoy companies, startups in the industry often find it difficult to secure funding from VC firms or Angel Investors. The 2025 US Senate report on biotechnology and health data science (found here: https://www.biotech.senate.gov/) writes “… when the market became more expensive, many biotechnology companies were hit hard. Investors fled to safter investments, returning to biopharmaceuticals with defined return profiles and moving away from cutting-edge biotechnology applications in medicine…"
+Due to the high-costs of funding for health data science and biotecholoy companies, startups in the industry often find it difficult to secure funding from VC firms or Angel Investors.
+
+The 2025 US Senate report on biotechnology and health data science (found here: https://www.biotech.senate.gov/) writes “… when the market became more expensive, many biotechnology companies were hit hard. Investors fled to safter investments, returning to biopharmaceuticals with defined return profiles and moving away from cutting-edge biotechnology applications in medicine…"
 
 As a result, cost savings at any cost are of crucial importance. 
 
