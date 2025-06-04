@@ -42,7 +42,7 @@ def upload_to_gcs():
 with DAG(
     dag_id="gcs_upload_test_dag",
     start_date=datetime(2024, 1, 1),
-    schedule_interval=None,
+    schedule_interval="0 10 * * *",
     catchup=False,
     tags=["test", "gcp"]
 ) as dag:
