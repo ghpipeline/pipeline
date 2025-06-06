@@ -41,10 +41,11 @@ def upload_to_gcs():
 
 with DAG(
     dag_id="gcs_upload_test_dag",
-    start_date=datetime(2024, 1, 1),
-    schedule_interval="0 10 * * *",
+    start_date=datetime(2024, 1, 1, tzinfo=ZoneInfo("America/Los_Angeles")),
+    schedule_interval="0 10 * * *",  # 10:00 AM PST
     catchup=False,
-    tags=["test", "gcp"]
+    tags=["test", "gcp"],
+    timezone=ZoneInfo("America/Los_Angeles")
 ) as dag:
 
     upload_task = PythonOperator(
