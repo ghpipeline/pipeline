@@ -10,6 +10,7 @@ with DAG(
     start_date=datetime(2024, 1, 1),
     schedule_interval="@daily",
     catchup=False,
+    tags=["test"]
 ) as dag:
     task = PythonOperator(
         task_id="say_hello",
