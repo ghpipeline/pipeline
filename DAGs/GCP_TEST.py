@@ -7,17 +7,17 @@ from google.cloud import storage
 import os
 
 def upload_to_gcs():
-    # Timezone-aware timestamp in PST
+    # Use PST/PDT for timestamping files
     now_pst = datetime.now(ZoneInfo("America/Los_Angeles"))
-    
-    # Create folder structure based on date
+
+    # Folder structure by date
     folder_path = now_pst.strftime("%Y/%m/%d")
-    
-    # Create a unique filename using timestamp
+
+    # Unique filename
     timestamp_str = now_pst.strftime("%Y%m%d_%H%M%S")
     filename = f"temp_data_{timestamp_str}.csv"
-    
-    # Full local path to save CSV
+
+    # Local file path
     local_file_path = f"/opt/airflow/{filename}"
 
     # Create dummy data
@@ -27,7 +27,7 @@ def upload_to_gcs():
     })
     df.to_csv(local_file_path, index=False)
 
-    # GCS upload target path
+    # Upload path in GCS
     bucket_name = "world_bank_raw"
     destination_blob_name = f"test_upload/{folder_path}/{filename}"
 
@@ -39,15 +39,18 @@ def upload_to_gcs():
 
     print(f"Uploaded {local_file_path} to gs://{bucket_name}/{destination_blob_name}")
 
+# DAG definition
 with DAG(
     dag_id="gcs_upload_test_dag",
     start_date=datetime(2024, 1, 1, tzinfo=ZoneInfo("America/Los_Angeles")),
-    schedule_interval="0 10 * * *",  # 10:00 AM PST
+    schedule_interval="0 10 * * *",  # 10:00 AM PST/PDT
     catchup=False,
-    tags=["test", "gcp"]
+    tags=["test", "gcp"],
+    timezone=ZoneInfo("America/Los_Angeles")  # <- ensures UI + scheduler respect PST
 ) as dag:
 
     upload_task = PythonOperator(
         task_id="upload_to_gcs",
         python_callable=upload_to_gcs
     )
+
