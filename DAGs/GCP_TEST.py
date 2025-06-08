@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import pandas as pd
 from google.cloud import storage
