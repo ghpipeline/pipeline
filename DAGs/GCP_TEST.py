@@ -42,7 +42,7 @@ def upload_to_gcs():
 # DAG definition
 with DAG(
     dag_id="gcs_upload_test_dag",
-    start_date=datetime(2025, 6, 1, 10, 0, tzinfo=ZoneInfo("America/Los_Angeles")),
+    start_date=datetime(2025, 6, 1, 9, 0, tzinfo=ZoneInfo("America/Los_Angeles")),
     schedule_interval=timedelta(days=1),  # Runs at 10am PDT daily
     catchup=False,
     tags=["test", "gcp"]
