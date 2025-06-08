@@ -45,8 +45,7 @@ with DAG(
     start_date=datetime(2024, 1, 1, tzinfo=ZoneInfo("America/Los_Angeles")),
     schedule_interval="0 10 * * *",  # 10:00 AM PST/PDT
     catchup=False,
-    tags=["test", "gcp"],
-    timezone=ZoneInfo("America/Los_Angeles")  # <- ensures UI + scheduler respect PST
+    tags=["test", "gcp"]
 ) as dag:
 
     upload_task = PythonOperator(
