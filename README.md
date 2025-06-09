@@ -164,4 +164,8 @@ Then we are going to make our first table. We are going to call this "gdp_table"
 
 ## Visualization ##
 
+Basic Outline: https://cloud.google.com/looker/docs/studio/connect-to-google-bigquery#:~:text=Looker%20Studio%20can%20connect%20to,that%20have%20been%20set%20up.
+
+For our visualization tool, we are going to be using Looker Studio. This is because 1) it is a low-cost tool, 2) it is a GCP product that integrates easily, and 3) it is very basic and simple.
+
 
