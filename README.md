@@ -10,7 +10,7 @@
 - [Infrastructure](#infrastructure)
 - [Transform](#transform)
 - [Data Warehouse](#data-warehouse)
-- [Visualization Tool](#visualisation)
+- [Visualization](#visualization)
 
 ## Overview ##
 
