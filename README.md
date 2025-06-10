@@ -164,8 +164,11 @@ Then we are going to make our first table. We are going to call this "gdp_table"
 
 ## Visualization ##
 
+
 Basic Outline: https://cloud.google.com/looker/docs/studio/connect-to-google-bigquery#:~:text=Looker%20Studio%20can%20connect%20to,that%20have%20been%20set%20up.
 
-For our visualization tool, we are going to be using Looker Studio. This is because 1) it is a low-cost tool, 2) it is a GCP product that integrates easily, and 3) it is very basic and simple.
+For our visualization tool, we are going to be using Looker (different than Looker Studio). This is because 1) it is a low-cost tool, 2) it is a GCP product that integrates easily, and 3) it is very basic and simple.
+
+First, we must create an instance. Enable Looker API (you will be prompted) and then create the instance. You will be prompted for an instance name to create as well as an Oauth Client ID and Passkey.
 
 
