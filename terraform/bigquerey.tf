@@ -26,11 +26,6 @@ resource "google_bigquery_table" "gdp_table" {
     "name": "year",
     "type": "INTEGER",
     "mode": "REQUIRED"
-  },
-  {
-    "name": "gdp",
-    "type": "FLOAT",
-    "mode": "NULLABLE"
   }
 ]
 EOF
