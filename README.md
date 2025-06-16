@@ -100,6 +100,10 @@ This is also a good way to determine if you downloaded GCP correctly.
 gcloud auth application-default login
 ```
 
+Once this is done, you need to set up a serivce account. This will be the account you use to connect GCP and use its various features. Here is a link: https://cloud.google.com/iam/docs/service-account-overview
+
+IMPORTANT: Make sure you donwnload the serviceaccount.json file and put it somethere you remember. You will need it for multiple other aspects of this project.
+
 ## Infrastructure ##
 
 We are using Terraform Cloud: https://app.terraform.io
@@ -164,7 +168,11 @@ Then we are going to make our first table. We are going to call this "gdp_table"
 
 ## Data Base Transformation ##
 
-Now that we have our data in Google Big Querey, we will need to do some basic table joins for the sake of our projects. For this, we will use DBT. DBT has a free forever policy for developers if you are using only one seat. This is perfectly accetable for us.
+Now that we have our data in Google Big Querey, we will need to do some basic table joins for the sake of our projects. For this, we will use DBT Cloud. DBT Cloud has a free forever policy for developers if you are using only one seat. This is perfectly accetable for us.
+
+First create an account and login to DBT Cloud. 
+
+After the account has been created, you go to the "connections" tab to sync Big Querey to DBT Cloud. You will need your Google Cloud Project ID, 
 
 
 ## Visualization ##
@@ -175,5 +183,7 @@ Basic Outline: https://cloud.google.com/looker/docs/studio/connect-to-google-big
 For our visualization tool, we are going to be using Looker (different than Looker Studio). This is because 1) it is a low-cost tool, 2) it is a GCP product that integrates easily, and 3) it is very basic and simple.
 
 First, we must create an instance. Enable Looker API (you will be prompted) and then create the instance. You will be prompted for an instance name to create as well as an Oauth Client ID and Passkey.
+
+GOOD NEWS: Since we have already set up a GCP service account and given it full access, we can upload the GCP json service account file 
 
 
