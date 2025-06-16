@@ -10,7 +10,7 @@
 - [Infrastructure](#infrastructure)
 - [Transform](#transform)
 - [Data Warehouse](#data-warehouse)
-- [Data Base Transformation](#data-base-ransformation)
+- [Data Base Transformation](#data-base-transformation)
 - [Visualization](#visualization)
 
 ## Overview ##
