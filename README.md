@@ -180,7 +180,7 @@ Once that is done, configure your environment, and connect the DBT cloud interfa
 
 Make sure your connection is tested before deployment.
 
-Important: DBT Cloud will automatically put all of its various folder and compenents in the main base folder of your repo. Using the DBT CLOUD IDE, I created a new folder titled "DBT" and put the sub folders in there to clean up the repo.
+Important: DBT Cloud will automatically put all of its various folder and compenents in the main base folder of your repo. Using the DBT CLOUD IDE, I created a new folder titled "DBT" and put the sub folders in there to clean up the repo. You can see this here: [dbt folder](dbt/)
 
 
 
