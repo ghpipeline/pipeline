@@ -172,7 +172,16 @@ Now that we have our data in Google Big Querey, we will need to do some basic ta
 
 First create an account and login to DBT Cloud. 
 
-After the account has been created, you go to the "connections" tab to sync Big Querey to DBT Cloud. You will need your Google Cloud Project ID, 
+After the account has been created, you go to the "connections" tab to sync Big Querey to DBT Cloud. You will need your Google Cloud Project ID. 
+
+GOOD NEWS: Since we have already set up a GCP service account and given it full access, we can upload the GCP json service account file 
+
+Once that is done, configure your environment, and connect the DBT cloud interface to your git hub repo. After this is done, you will be able to deploy dbt directly in the repo.
+
+Make sure your connection is tested before deployment.
+
+Important: DBT Cloud will automatically put all of its various folder and compenents in the main base folder of your repo. Using the DBT CLOUD IDE, I created a new folder titled "DBT" and put the sub folders in there to clean up the repo.
+
 
 
 ## Visualization ##
@@ -183,7 +192,5 @@ Basic Outline: https://cloud.google.com/looker/docs/studio/connect-to-google-big
 For our visualization tool, we are going to be using Looker (different than Looker Studio). This is because 1) it is a low-cost tool, 2) it is a GCP product that integrates easily, and 3) it is very basic and simple.
 
 First, we must create an instance. Enable Looker API (you will be prompted) and then create the instance. You will be prompted for an instance name to create as well as an Oauth Client ID and Passkey.
-
-GOOD NEWS: Since we have already set up a GCP service account and given it full access, we can upload the GCP json service account file 
 
 
