@@ -182,6 +182,17 @@ Make sure your connection is tested before deployment.
 
 Important: DBT Cloud will automatically put all of its various folder and compenents in the main base folder of your repo. Using the DBT CLOUD IDE, I created a new folder titled "DBT" and put the sub folders in there to clean up the repo. You can see this here: [dbt folder](dbt/)
 
+DBT allows you to build "models". A model is a essentially a sql style data base transformation that can be deployed, scheduled and scripted. Essentially, we are going to be doing all of this in sql.
+
+
+```
+dbt build
+```
+
+```
+dbt run
+```
+
 
 
 ## Visualization ##
