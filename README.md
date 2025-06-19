@@ -151,6 +151,54 @@ terraform apply
 And BOOM. That then creates all infrastructure in GCP without needing to manually click and point.
 
 
+
+## Orchestration (Docker + Airflow) ##
+
+To keep orchestration costs low and maintain full control of our environment, we are using **Apache Airflow** deployed via **Docker Compose** on a lightweight **GCP VM** (Ubuntu). This avoids the higher costs of managed orchestration tools like Cloud Composer while remaining scalable and portable.
+
+We use Docker Compose to spin up a full Airflow environment with the following services:
+- `airflow-webserver`: Web UI for monitoring and triggering DAGs
+- `airflow-scheduler`: Monitors DAG schedules and queues tasks
+- `postgres`: Metadata database used by Airflow to track runs and state
+- `airflow-worker`: (Optional, depending on executor) Executes tasks in distributed setups
+- `airflow-init`: Bootstraps the database and configurations
+
+All of these services are defined and launched together using the `docker-compose.yml` file, which ensures consistent setup across environments and allows local or remote orchestration without needing to install Airflow directly on the VM host.
+
+Airflow reads DAG scripts from the `dags/` directory, and we use a `PythonOperator` to define custom logic. One test DAG writes a simple CSV file and uploads it to Google Cloud Storage (GCS), serving as a proof-of-concept for future ingestion and model training workflows.
+
+To authenticate to GCP, we mount a service account key stored in the repo at `secrets/gcp-key.json`. The key is passed into the container using an environment variable:
+
+```
+GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/secrets/gcp-key.json
+```
+
+Mounting is handled in `docker-compose.yml` and ensures Airflow tasks have secure access to GCP resources.
+
+### Deployment
+
+To build and run Airflow, we use:
+
+```
+docker compose down -v && docker compose up -d --build
+```
+
+DAGs can be triggered via:
+
+```
+docker exec -it airflow-project-airflow-webserver-1 airflow dags trigger <dag_id>
+```
+
+Or tested manually with:
+
+```
+docker exec -it airflow-project-airflow-webserver-1 airflow tasks test <dag_id> <task_id> <date>
+```
+
+This setup allows us to schedule, test, and run jobs directly on a GCP VM with minimal resource requirements. Docker provides containerized isolation and reproducibility, while Airflow handles job orchestration, task retries, scheduling, and logging. Together, they form the operational backbone of this pipeline.
+
+
+
 ## Transform ##
 
 For the sake of column name consistency, we are going to create a transform folder that will be run in every data pull to create consistency with column names. For best practice, we want all lower case letters with underscores beteen each word. Here is the folder [transform](transform/transformer.py)
