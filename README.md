@@ -195,6 +195,14 @@ Or tested manually with:
 docker exec -it airflow-project-airflow-webserver-1 airflow tasks test <dag_id> <task_id> <date>
 ```
 
+To access the Airflow UI, visit:
+
+```
+http://<your-vm-external-ip>:8080
+```
+
+Note: The external IP for the VM is currently ephemeral. If needed, it can be converted to a static IP via the GCP console to ensure long-term access.
+
 This setup allows us to schedule, test, and run jobs directly on a GCP VM with minimal resource requirements. Docker provides containerized isolation and reproducibility, while Airflow handles job orchestration, task retries, scheduling, and logging. Together, they form the operational backbone of this pipeline.
 
 
