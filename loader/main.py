@@ -4,58 +4,51 @@ from flask import jsonify, Request
 import functions_framework
 from google.cloud import storage, bigquery
 
-# Map each bucket to its BigQuery dataset and table
-BUCKET_TO_BQ = {
-    "bucket-alpha": {
+# Map each subfolder to its BigQuery dataset and table
+FOLDER_TO_BQ = {
+    "alpha": {
         "dataset": "dataset_alpha",
         "table": "data_alpha"
     },
-    "bucket-beta": {
+    "beta": {
         "dataset": "dataset_beta",
         "table": "data_beta"
     },
-    # Add more buckets here as needed
+    # Add more folders here as needed
 }
 
-BQ_PROJECT = os.environ.get("BQ_PROJECT")  # Set this in your Cloud Function environment variables
+BQ_PROJECT = os.environ.get("BQ_PROJECT")
+BUCKET_NAME = os.environ.get("BUCKET_NAME")  # Single overarching bucket
 
 @functions_framework.http
 def daily_gcs_to_bq(request: Request):
     request_json = request.get_json(silent=True)
-    bucket_name = None
+    folder = request_json.get("folder") if request_json else None
 
-    if request_json and "bucket" in request_json:
-        bucket_name = request_json["bucket"]
-    else:
-        bucket_name = os.environ.get("BUCKET_NAME")
+    if not folder:
+        return "Missing 'folder' in request body.", 400
 
-    if not bucket_name:
-        return "Missing 'bucket' in request body or BUCKET_NAME environment variable.", 400
+    if folder not in FOLDER_TO_BQ:
+        return f"Folder '{folder}' is not configured in FOLDER_TO_BQ mapping.", 400
 
-    if bucket_name not in BUCKET_TO_BQ:
-        return f"Bucket '{bucket_name}' is not configured in BUCKET_TO_BQ mapping.", 400
+    dataset = FOLDER_TO_BQ[folder]["dataset"]
+    table = FOLDER_TO_BQ[folder]["table"]
 
-    dataset = BUCKET_TO_BQ[bucket_name]["dataset"]
-    table = BUCKET_TO_BQ[bucket_name]["table"]
-
-    # Build folder prefix based on current year and month (UTC)
+    # Build folder prefix like 'alpha/2025/07/'
     now = datetime.datetime.utcnow()
-    folder_prefix = f"{now.year}/{now.month:02d}/"
+    folder_prefix = f"{folder}/{now.year}/{now.month:02d}/"
 
     storage_client = storage.Client()
-    bucket = storage_client.bucket(bucket_name)
-
+    bucket = storage_client.bucket(BUCKET_NAME)
     blobs = list(bucket.list_blobs(prefix=folder_prefix))
 
     if not blobs:
-        return f"No files found in bucket '{bucket_name}' with prefix '{folder_prefix}'.", 404
+        return f"No files found in '{folder_prefix}'.", 404
 
-    # Find the most recently updated blob
     latest_blob = max(blobs, key=lambda b: b.updated)
+    file_uri = f"gs://{BUCKET_NAME}/{latest_blob.name}"
 
-    file_uri = f"gs://{bucket_name}/{latest_blob.name}"
-
-    bigquery_client = bigquery.Client()
+    bq_client = bigquery.Client()
     table_id = f"{BQ_PROJECT}.{dataset}.{table}"
 
     job_config = bigquery.LoadJobConfig(
@@ -64,16 +57,17 @@ def daily_gcs_to_bq(request: Request):
         write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
     )
 
-    load_job = bigquery_client.load_table_from_uri(
+    load_job = bq_client.load_table_from_uri(
         file_uri,
         table_id,
         job_config=job_config,
     )
-    load_job.result()  # Wait for job to complete
+    load_job.result()
 
     return jsonify({
-        "message": f"Successfully loaded {latest_blob.name} into {table_id}",
-        "bucket": bucket_name,
+        "message": f"Loaded {latest_blob.name} into {table_id}",
+        "bucket": BUCKET_NAME,
+        "folder": folder,
         "dataset": dataset,
         "table": table,
         "file": latest_blob.name,
