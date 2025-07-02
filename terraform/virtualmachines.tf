@@ -13,6 +13,15 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 
+  # Attach the persistent disk (this is the new block)
+  attached_disk {
+    source      = google_compute_disk.persistent_disk.id
+    device_name = "persistent-disk"
+    mode        = "READ_WRITE"
+    auto_delete = false  # ensures disk is not deleted if VM is deleted
+  }
+
+
   network_interface {
     network = "default"
     access_config {}
