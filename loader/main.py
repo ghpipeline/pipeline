@@ -13,8 +13,8 @@ FOLDER_TO_BQ = {
     # Add more folders here as needed
 }
 
-BQ_PROJECT = os.environ.get("globalhealthdatascience")
-BUCKET_NAME = os.environ.get("fda_enforcement_data")  # Single overarching bucket
+BQ_PROJECT = os.environ.get("BQ_PROJECT")
+BUCKET_NAME = os.environ.get("BUCKET_NAME") # Single overarching bucket
 
 @functions_framework.http
 def daily_gcs_to_bq(request: Request):
