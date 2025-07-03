@@ -6,19 +6,15 @@ from google.cloud import storage, bigquery
 
 # Map each subfolder to its BigQuery dataset and table
 FOLDER_TO_BQ = {
-    "alpha": {
-        "dataset": "dataset_alpha",
-        "table": "data_alpha"
-    },
-    "beta": {
-        "dataset": "dataset_beta",
-        "table": "data_beta"
+    "raw_data": {
+        "dataset": "fda_enforcement_data",
+        "table": "raw_data"
     },
     # Add more folders here as needed
 }
 
-BQ_PROJECT = os.environ.get("BQ_PROJECT")
-BUCKET_NAME = os.environ.get("BUCKET_NAME")  # Single overarching bucket
+BQ_PROJECT = os.environ.get("globalhealthdatascience")
+BUCKET_NAME = os.environ.get("fda_enforcement_data")  # Single overarching bucket
 
 @functions_framework.http
 def daily_gcs_to_bq(request: Request):
