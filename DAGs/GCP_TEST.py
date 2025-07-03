@@ -10,10 +10,7 @@ def upload_to_gcs():
     # Use PST/PDT for timestamping files
     now_pst = datetime.now(ZoneInfo("America/Los_Angeles"))
 
-    # Folder structure by date
-    folder_path = now_pst.strftime("%Y/%m/%d")
-
-    # Unique filename
+    # Unique filename with timestamp
     timestamp_str = now_pst.strftime("%Y%m%d_%H%M%S")
     filename = f"temp_data_{timestamp_str}.csv"
 
@@ -28,8 +25,8 @@ def upload_to_gcs():
     df.to_csv(local_file_path, index=False)
 
     # Upload path in GCS
-    bucket_name = "world_bank_raw"
-    destination_blob_name = f"test_upload/{folder_path}/{filename}"
+    bucket_name = "fda_enforcement_data"
+    destination_blob_name = f"raw_data/{filename}"
 
     # Upload to GCS
     client = storage.Client()
@@ -43,7 +40,7 @@ def upload_to_gcs():
 with DAG(
     dag_id="gcs_upload_test_dag",
     start_date=datetime(2024, 6, 9, 10, 0, tzinfo=ZoneInfo("America/Los_Angeles")),
-    schedule_interval="0 10 * * *",  # ← 10:00 AM LOCAL TIME
+    schedule_interval="0 10 * * *",  # 10:00 AM LOCAL TIME
     catchup=False,
     tags=["test", "gcp"]
 ) as dag:
@@ -52,4 +49,3 @@ with DAG(
         task_id="upload_to_gcs",
         python_callable=upload_to_gcs
     )
-
