@@ -1,6 +1,8 @@
 from airflow import DAG
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+
 
 default_args = {
     #"owner": "airflow",
