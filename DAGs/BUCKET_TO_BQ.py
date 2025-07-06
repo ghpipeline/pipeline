@@ -3,6 +3,8 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 import os
 from google.cloud import storage, bigquery
+from zoneinfo import ZoneInfo
+
 
 # Mapping folder names to BigQuery dataset and table
 FOLDER_TO_BQ = {
@@ -48,13 +50,13 @@ def load_latest_blob_to_bq(folder="raw_data"):
     load_job = bq_client.load_table_from_uri(file_uri, table_id, job_config=job_config)
     load_job.result()
 
-    print(f"✅ Loaded {latest_blob.name} into {table_id}")
+    print(f"Loaded {latest_blob.name} into {table_id}")
 
 # Default DAG arguments
 default_args = {
     #"owner": "airflow",
     #"depends_on_past": False,
-    start_date=datetime(2024, 6, 9, 10, 0, tzinfo=ZoneInfo("America/Los_Angeles"))
+    "start_date": datetime(2024, 6, 9, 10, 0, tzinfo=ZoneInfo("America/Los_Angeles")),
     #"retries": 1,
     #"retry_delay": timedelta(minutes=5),
 }
