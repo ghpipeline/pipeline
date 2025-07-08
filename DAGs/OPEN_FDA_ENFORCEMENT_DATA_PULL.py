@@ -65,7 +65,7 @@ def upload_to_gcs():
 
 # DAG definition
 with DAG(
-    dag_id="gcs_upload_openfda_dag",
+    dag_id="gcs_upload",
     start_date=datetime(2024, 6, 9, 10, 0, tzinfo=ZoneInfo("America/Los_Angeles")),
     schedule_interval="0 10 * * *",  # 10:00 AM LOCAL TIME
     catchup=False,
