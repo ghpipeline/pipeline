@@ -44,8 +44,12 @@ def upload_to_gcs():
         SKIP += LIMIT
         time.sleep(0.2)
 
+    # Normalize and rename columns for BigQuery compatibility
     df = pd.json_normalize(ALL_RESULTS)
+    df.columns = [col.replace('.', '_') for col in df.columns]  # <-- this is the fix
     print(f"Fetched full dataset. Final shape: {df.shape}")
+
+    # Save CSV
     df.to_csv(local_file_path, index=False)
 
     # Upload to GCS
