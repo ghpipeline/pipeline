@@ -54,13 +54,13 @@ WHERE value IS NOT NULL
 with DAG(
     dag_id="cleaned_to_ml_preped",
     default_args=default_args,
-    schedule_interval="@daily",
+    schedule_interval=None,
     catchup=False,
     tags=["bigquery", "ml", "prep"],
 ) as dag:
 
     prep_for_modeling = BigQueryInsertJobOperator(
-        task_id="prep_cleaned_to_ml_ready",
+        task_id="cleaned_to_ml_ready",
         gcp_conn_id="google_cloud_default",
         configuration={
             "query": {
