@@ -12,6 +12,8 @@ requests==2.32.3
 sqlalchemy==1.4.49
 typing-extensions==4.12.0        
 typing-inspection==0.4.0
+pandas-gbq
+
 
 
 
