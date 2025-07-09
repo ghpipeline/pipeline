@@ -17,7 +17,6 @@ ML_PREP_SQL = f"""
 CREATE OR REPLACE TABLE `{ML_PREPED_TABLE}` AS
 SELECT
     *,
-    SAFE_CAST(value AS FLOAT64) AS value_numeric,
     SAFE.PARSE_DATE('%Y%m%d', recall_initiation_date) AS recall_initiation_dt,
     SAFE.PARSE_DATE('%Y%m%d', center_classification_date) AS center_classification_dt,
     SAFE.PARSE_DATE('%Y%m%d', termination_date) AS termination_dt,
@@ -48,7 +47,7 @@ SELECT
     REGEXP_CONTAINS(reason_for_recall, r'(?i)steril') AS mention_sterility,
     CURRENT_TIMESTAMP() AS prepped_at
 FROM `{CLEANED_TABLE}`
-WHERE SAFE_CAST(value AS FLOAT64) IS NOT NULL
+WHERE cleaned_description IS NOT NULL
 """
 
 with DAG(
