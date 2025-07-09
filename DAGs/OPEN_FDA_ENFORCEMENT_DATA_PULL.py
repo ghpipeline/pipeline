@@ -46,7 +46,11 @@ def upload_to_gcs():
 
     # Normalize and rename columns for BigQuery compatibility
     df = pd.json_normalize(ALL_RESULTS)
-    df.columns = [col.replace('.', '_') for col in df.columns]  # <-- this is the fix
+    df.columns = [col.replace('.', '_') for col in df.columns]  # Replace dots in column names
+
+    # Add ingestion timestamp
+    df["loaded_at"] = pd.Timestamp.now(tz="America/Los_Angeles")
+
     print(f"Fetched full dataset. Final shape: {df.shape}")
 
     # Save CSV
