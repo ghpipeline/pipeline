@@ -48,7 +48,7 @@ SELECT
     REGEXP_CONTAINS(reason_for_recall, r'(?i)steril') AS mention_sterility,
     CURRENT_TIMESTAMP() AS prepped_at
 FROM `{CLEANED_TABLE}`
-WHERE value IS NOT NULL
+WHERE value_numeric IS NOT NULL
 """
 
 with DAG(
