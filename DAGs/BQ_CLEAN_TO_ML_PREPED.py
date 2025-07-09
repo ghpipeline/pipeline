@@ -17,16 +17,16 @@ ML_PREP_SQL = f"""
 CREATE OR REPLACE TABLE `{ML_PREPED_TABLE}` AS
 SELECT
     *,
-    SAFE.PARSE_DATE('%Y%m%d', recall_initiation_date) AS recall_initiation_dt,
-    SAFE.PARSE_DATE('%Y%m%d', center_classification_date) AS center_classification_dt,
-    SAFE.PARSE_DATE('%Y%m%d', termination_date) AS termination_dt,
-    SAFE.PARSE_DATE('%Y%m%d', report_date) AS report_dt,
-    DATE_DIFF(SAFE.PARSE_DATE('%Y%m%d', termination_date), SAFE.PARSE_DATE('%Y%m%d', recall_initiation_date), DAY) AS recall_duration_days,
-    DATE_DIFF(SAFE.PARSE_DATE('%Y%m%d', center_classification_date), SAFE.PARSE_DATE('%Y%m%d', recall_initiation_date), DAY) AS time_to_classification_days,
-    DATE_DIFF(SAFE.PARSE_DATE('%Y%m%d', report_date), SAFE.PARSE_DATE('%Y%m%d', recall_initiation_date), DAY) AS report_lag_days,
-    EXTRACT(YEAR FROM SAFE.PARSE_DATE('%Y%m%d', recall_initiation_date)) AS initiation_year,
-    EXTRACT(MONTH FROM SAFE.PARSE_DATE('%Y%m%d', recall_initiation_date)) AS initiation_month,
-    EXTRACT(DAYOFWEEK FROM SAFE.PARSE_DATE('%Y%m%d', recall_initiation_date)) AS initiation_dayofweek,
+    SAFE.PARSE_DATE('%Y%m%d', CAST(recall_initiation_date AS STRING)) AS recall_initiation_dt,
+    SAFE.PARSE_DATE('%Y%m%d', CAST(center_classification_date AS STRING)) AS center_classification_dt,
+    SAFE.PARSE_DATE('%Y%m%d', CAST(termination_date AS STRING)) AS termination_dt,
+    SAFE.PARSE_DATE('%Y%m%d', CAST(report_date AS STRING)) AS report_dt,
+    DATE_DIFF(SAFE.PARSE_DATE('%Y%m%d', CAST(termination_date AS STRING)), SAFE.PARSE_DATE('%Y%m%d', CAST(recall_initiation_date AS STRING)), DAY) AS recall_duration_days,
+    DATE_DIFF(SAFE.PARSE_DATE('%Y%m%d', CAST(center_classification_date AS STRING)), SAFE.PARSE_DATE('%Y%m%d', CAST(recall_initiation_date AS STRING)), DAY) AS time_to_classification_days,
+    DATE_DIFF(SAFE.PARSE_DATE('%Y%m%d', CAST(report_date AS STRING)), SAFE.PARSE_DATE('%Y%m%d', CAST(recall_initiation_date AS STRING)), DAY) AS report_lag_days,
+    EXTRACT(YEAR FROM SAFE.PARSE_DATE('%Y%m%d', CAST(recall_initiation_date AS STRING))) AS initiation_year,
+    EXTRACT(MONTH FROM SAFE.PARSE_DATE('%Y%m%d', CAST(recall_initiation_date AS STRING))) AS initiation_month,
+    EXTRACT(DAYOFWEEK FROM SAFE.PARSE_DATE('%Y%m%d', CAST(recall_initiation_date AS STRING))) AS initiation_dayofweek,
     LENGTH(cleaned_description) AS desc_length,
     ARRAY_LENGTH(SPLIT(cleaned_description, ' ')) AS desc_word_count,
     REGEXP_CONTAINS(cleaned_description, r'injection') AS has_injection,
@@ -49,6 +49,7 @@ SELECT
 FROM `{CLEANED_TABLE}`
 WHERE cleaned_description IS NOT NULL
 """
+
 
 with DAG(
     dag_id="cleaned_to_ml_preped",
