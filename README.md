@@ -219,9 +219,33 @@ Basic Outlne: https://cloud.google.com/bigquery?hl=en
 
 We are going to be useing Google BigQuery for our datawarehouse as opposed to Snowflake (our standard too). This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
 
-It should be noted that we are setting this up in Terraform. First we must setup a dataset to put differnt tables inside of. We are calling it "world_bank_dataset".
+### Data Warehouse: BigQuery (`fda_enforcement_data`)
 
-Then we are going to make our first table. We are going to call this "gdp_table". All configuration code will be found in the bigquerey.tf file here: [bigquerey.tf](terraform/bigquerey.tf)
+We use **Google BigQuery** to structure the FDA enforcement data pipeline into clearly defined stages. This modular setup ensures auditability, scalability, and clean separation between raw ingestion, transformation, and ML modeling.
+
+#### GCP Cloud Storage (Landing Zone)
+
+- **Bucket**: `fda_enforcement_data`
+- **Folder**: `raw_data/`
+- **Purpose**: Stores raw CSV dumps pulled from the openFDA API. These serve as the source-of-truth files before any processing.
+
+#### BigQuery Dataset: `fda_enforcement_data`
+
+| Table Name    | Purpose                                                                 |
+|---------------|-------------------------------------------------------------------------|
+| `raw_data`    | Direct import of raw CSVs from GCP for initial inspection & archival.   |
+| `cleaned_data`| Structured dataset with cleaned features: parsed dates, dropped columns, and standardized formats. |
+| `ml_preped`   | Final table used for modeling. Includes binary indicators, date diffs, top state flags, and optionally TF-IDF vectors. |
+
+#### Data Flow Overview
+
+1. **Raw CSVs** are pulled from openFDA and stored in GCP (`raw_data/`).
+2. An **Airflow DAG** ingests this data into BigQuery → `raw_data`.
+3. Cleaning/transformation scripts write structured output to → `cleaned_data`.
+4. Feature engineering for modeling produces the final ML-ready table → `ml_preped`.
+
+This design allows rapid iteration on the modeling pipeline without affecting raw data integrity, while keeping transformations version-controlled and reproducible.
+
 
 ## Data Base Transformation ##
 
