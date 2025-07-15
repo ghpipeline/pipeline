@@ -8,6 +8,8 @@ typing-extensions==4.12.0
 typing-inspection==0.4.0
 pandas-gbq
 joblib
+db-dtypes
+pyarrow
 
 
 
