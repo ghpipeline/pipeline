@@ -9,10 +9,11 @@
 - [Storage](#storage)
 - [Infrastructure](#infrastructure)
 - [Orchestration (Docker + Airflow)](#orchestration-docker--airflow)
+- [Scritps - DAGs](#DAGs)
 - [Transform](#transform)
 - [Data Warehouse](#data-warehouse)
-- [Data Base Transformation](#data-base-transformation)
-- [Visualization](#visualization)
+- [Data Base Transformation - DBT](#data-base-transformation)
+- [Visualization: Looker Studio](#visualization-looker-studio)
 
 ## Overview ##
 
@@ -78,55 +79,20 @@ Using the link above, we are able to call a json response from the REST API and 
 
 ## Storage ##
 
-In order to store the data that we are creating. It is important to note here that we are trying to avoid using anything on a personal computer, as that is not a realistic vision for the deployment of a commerical data pipeline. As such, we will need some cloud provider. Due to our familiarity with the product, we are going to use GCP. 
+We will be using the Google Cloud Platform (GCP) for cloud storage.
 
-IMPORTANT: GCP does have a free tier where you can get $300 of free credit for 90 days. That being said, when you are setting up the profile, you will be required to enter in a credit card or payment method before you get started. For the sake of this project, I am going to purchase a pre-paid VISA card with $100 preloaded onto said card. As GCP bills monthly, I want this to be seperate from my actual bank account.
+For setup instructions click [here](storage/)
 
-EDIT: Turns out that Prepaid Cards are not allowed for GCP. I guess I will just use this to pay for my gas lol
+We will first use GCP buckets to store our raw data in a cloud storage location. The bucket will be called "fda_enforcement_data".
 
-EDIT 2: It did not work at the pump. I guess I will use it to pay for chicken
+All initial data will be put into this folder in a sub_folder titled "raw_data". For the AI/ML process that we will be performing later, data will be taken from this bucket into a data warehouse using Google Bigquerey (see "Data Warehouse" section below for this step).
 
-EDIT 3: Turns out there is no zip code attached to the card. As such, I cannot add it online.
-
-That being said, Google claims that they will not charge the card until conset is given to begin billing. We are just going to add my basic card. Wish me luck.
-
-After getting access into the GCP console, we are going to create a new project. Ours will be called "globalhealthdatascience".
-
-The next step is downloading the Google Cloud Console on your local machine. The setup guide can be found here: https://cloud.google.com/sdk/docs/install
-
-After downloading, run the command below in from your project terminal to login.
-This is also a good way to determine if you downloaded GCP correctly.
-
-```
-gcloud auth application-default login
-```
-
-Once this is done, you need to set up a serivce account. This will be the account you use to connect GCP and use its various features. Here is a link: https://cloud.google.com/iam/docs/service-account-overview
-
-IMPORTANT: Make sure you donwnload the serviceaccount.json file and put it somethere you remember. You will need it for multiple other aspects of this project.
 
 ## Infrastructure ##
 
-We are using Terraform Cloud: https://app.terraform.io
+We are using Terraform Cloud
 
-After logging into Terraform Cloud and making an account/profiile, we need to download Hashicorp and Terraform on our local machine. We are using MacOS.
-
-```
-brew tap hashicorp/tap
-brew install terraform
-```
-Once the installastion is complete, you can run the following command to make sure it downloaded correctly
-
-```
-terraform -help
-```
-
-In the main github repo, make a sub-directory for you terraform project. For our project, this can be found here: [terraform](terraform)
-
-Next you have to connect GCP with Terrafrom. We followed the quick start guide here: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started
-
-
-IMPORTANT: A key aspect of this is creating a service account with correct permissions. We added both Storage Admin. That service account then needs to export the creds as a .json file and then be saved into Terraform Cloud as an envrionment variable.
+For setup instructions click [here](terraform/). 
 
 Terraform stores files as .tf files.
 
@@ -154,6 +120,8 @@ And BOOM. That then creates all infrastructure in GCP without needing to manuall
 
 
 ## Orchestration (Docker + Airflow) ##
+
+For setup instructions click [here](orchestration/)
 
 To keep orchestration costs low and maintain full control of our environment, we are using **Apache Airflow** deployed via **Docker Compose** on a lightweight **GCP VM** (Ubuntu). This avoids the higher costs of managed orchestration tools like Cloud Composer while remaining scalable and portable.
 
@@ -207,71 +175,55 @@ Note: The external IP for the VM is currently ephemeral. If needed, it can be co
 This setup allows us to schedule, test, and run jobs directly on a GCP VM with minimal resource requirements. Docker provides containerized isolation and reproducibility, while Airflow handles job orchestration, task retries, scheduling, and logging. Together, they form the operational backbone of this pipeline.
 
 
+## DAGs ##
+
+To see the specific folder with the scripts click: [here](DAGs)
 
 ## Transform ##
 
-For the sake of column name consistency, we are going to create a transform folder that will be run in every data pull to create consistency with column names. For best practice, we want all lower case letters with underscores beteen each word. Here is the folder [transform](transform/transformer.py)
+For setup instructions click [here](transform/)
 
+For the sake of column name consistency, we are going to create a transform folder that will be run in every data pull to create consistency with column names. For best practice, we want all lower case letters with underscores beteen each word. Here is the folder [transform](transform/transformer.py)
 
 ## Data Warehouse ##
 
-Basic Outlne: https://cloud.google.com/bigquery?hl=en
+For setup instructions click [here](datawarehouse/)
 
-We are going to be useing Google BigQuery for our datawarehouse as opposed to Snowflake (our standard too). This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
+We are going to be useing Google BigQuery for our datawarehouse. This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
 
-### Data Warehouse: BigQuery (`fda_enforcement_data`)
+It should be noted that we are setting this up in Terraform.
 
-We use **Google BigQuery** to structure the FDA enforcement data pipeline into clearly defined stages. This modular setup ensures auditability, scalability, and clean separation between raw ingestion, transformation, and ML modeling.
-
-#### GCP Cloud Storage (Landing Zone)
-
-- **Bucket**: `fda_enforcement_data`
-- **Folder**: `raw_data/`
-- **Purpose**: Stores raw CSV dumps pulled from the openFDA API. These serve as the source-of-truth files before any processing.
-
-#### BigQuery Dataset: `fda_enforcement_data`
-
-| Table Name    | Purpose                                                                 |
-|---------------|-------------------------------------------------------------------------|
-| `raw_data`    | Direct import of raw CSVs from GCP for initial inspection & archival.   |
-| `cleaned_data`| Structured dataset with cleaned features: parsed dates, dropped columns, and standardized formats. |
-| `ml_preped`   | Final table used for modeling. Includes binary indicators, date diffs, top state flags, and optionally TF-IDF vectors. |
-
-#### Data Flow Overview
-
-1. **Raw CSVs** are pulled from openFDA and stored in GCP (`raw_data/`).
-2. An **Airflow DAG** ingests this data into BigQuery → `raw_data`.
-3. Cleaning/transformation scripts write structured output to → `cleaned_data`.
-4. Feature engineering for modeling produces the final ML-ready table → `ml_preped`.
-
-This design allows rapid iteration on the modeling pipeline without affecting raw data integrity, while keeping transformations version-controlled and reproducible.
-
+All configuration code will be found in the bigquerey.tf file here: [bigquerey.tf](terraform/bigquerey.tf)
 
 ## Data Base Transformation ##
 
+For setup instructions click [here](dbt/). 
+
 Now that we have our data in Google Big Querey, we will need to do some basic table joins for the sake of our projects. For this, we will use DBT Cloud. DBT Cloud has a free forever policy for developers if you are using only one seat. This is perfectly accetable for us.
 
-First create an account and login to DBT Cloud. 
-
-After the account has been created, you go to the "connections" tab to sync Big Querey to DBT Cloud. You will need your Google Cloud Project ID. 
-
-GOOD NEWS: Since we have already set up a GCP service account and given it full access, we can upload the GCP json service account file 
-
-Once that is done, configure your environment, and connect the DBT cloud interface to your git hub repo. After this is done, you will be able to deploy dbt directly in the repo.
-
-Make sure your connection is tested before deployment.
 
 Important: DBT Cloud will automatically put all of its various folder and compenents in the main base folder of your repo. Using the DBT CLOUD IDE, I created a new folder titled "DBT" and put the sub folders in there to clean up the repo. You can see this here: [dbt folder](dbt/)
 
+DBT allows you to build "models". A model is a essentially a sql style data base transformation that can be deployed, scheduled and scripted. Essentially, we are going to be doing all of this in sql.
 
 
-## Visualization ##
+```
+dbt build
+```
+
+```
+dbt run
+```
 
 
-Basic Outline: https://cloud.google.com/looker/docs/studio/connect-to-google-bigquery#:~:text=Looker%20Studio%20can%20connect%20to,that%20have%20been%20set%20up.
 
-For our visualization tool, we are going to be using Looker (different than Looker Studio). This is because 1) it is a low-cost tool, 2) it is a GCP product that integrates easily, and 3) it is very basic and simple.
+## Visualization: Looker-Studio ##
 
-First, we must create an instance. Enable Looker API (you will be prompted) and then create the instance. You will be prompted for an instance name to create as well as an Oauth Client ID and Passkey.
+For our visualization tool, we are going to be using Looker Studio.
+
+This is because 1) it is free, and 2) it is a GCP product that integrates easily.
+
+For setup instructions click [here](visualization/)
+
 
 
