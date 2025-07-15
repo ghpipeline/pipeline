@@ -13,10 +13,10 @@ SCALER_PATH = "/models/ml_scalers/scaler.joblib"
 SELECTOR_PATH = "/models/ml_scalers/feature_selector.joblib"
 
 # === BigQuery config ===
-PROJECT_ID = "your-gcp-project-id"
+PROJECT_ID = "globalhealthdatascience"
 DATASET = "fda_enforcement_data"
 SOURCE_TABLE = "ml_preped"
-DEST_TABLE = "predictions_output"
+DEST_TABLE = "ml_predictions"
 
 def predict_and_write():
     # Step 1: Load BigQuery data
