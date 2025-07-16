@@ -204,7 +204,7 @@ All configuration code will be found in the bigquerey.tf file here: [bigquerey.t
 
 ## Data Base Transformation ##
 
-For setup instructions click [here](dbt/). 
+For setup instructions click [here](dbt/) and read the README.md. 
 
 Now that we have our data in Google Big Querey, we will need to do some basic table joins for the sake of our projects. For this, we will use DBT Cloud. DBT Cloud has a free forever policy for developers if you are using only one seat. This is perfectly accetable for us.
 
