@@ -1,17 +1,17 @@
 google-cloud-storage==2.16.0
-#httpcore==0.16.3
-#humanize==4.9.0
 jinja2==3.1.2
-numpy==2.2.6
+numpy==1.24.4
 pandas==2.2.3
-#pendulum==2.1.2
-#prefect-gcp==0.6.7
-#prefect==3.4.4
-#pydantic==1.10.13
 requests==2.32.3
 sqlalchemy==1.4.49
-typing-extensions==4.12.0        
+typing-extensions==4.12.0
 typing-inspection==0.4.0
+pandas-gbq
+joblib
+db-dtypes==1.1.1
+pyarrow==12.0.1
+xgboost
+scikit-learn==1.3.0
 
 
 

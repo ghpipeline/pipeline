@@ -1,0 +1,72 @@
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.utils.dates import days_ago
+from google.cloud import bigquery
+import pandas as pd
+import numpy as np
+import joblib
+from datetime import datetime
+
+# === Model paths (mounted in Docker from /models) ===
+MODEL_PATH = "/models/ml_models/xgb_model.joblib"
+SCALER_PATH = "/models/ml_scalers/scaler.joblib"
+SELECTOR_PATH = "/models/ml_scalers/feature_selector.joblib"
+
+# === BigQuery config ===
+PROJECT_ID = "globalhealthdatascience"
+DATASET = "fda_enforcement_data"
+SOURCE_TABLE = "ml_preped"
+DEST_TABLE = "ml_predictions"
+
+def predict_and_write():
+    # Step 1: Load BigQuery data
+    client = bigquery.Client(project=PROJECT_ID)
+    query = f"SELECT * FROM `{PROJECT_ID}.{DATASET}.{SOURCE_TABLE}`"
+    df = client.query(query).to_dataframe()
+
+    # Step 2: Load saved model artifacts
+    model = joblib.load(MODEL_PATH)
+    scaler = joblib.load(SCALER_PATH)
+    selector = joblib.load(SELECTOR_PATH)
+
+    # Step 3: Extract and process features
+    y_true = df["is_class_1"]
+    X_full = df.drop(columns=["is_class_1"])
+
+    numeric_cols = [
+        "recall_duration_days", "time_to_classification_days", "report_lag_days",
+        "initiation_year", "initiation_month", "initiation_dayofweek"
+    ]
+    X_full[numeric_cols] = scaler.transform(X_full[numeric_cols])
+    X_selected = selector.transform(X_full)
+
+    # Step 4: Make predictions
+    y_proba = model.predict_proba(X_selected)[:, 1]
+    y_pred = model.predict(X_selected)
+
+    results_df = pd.DataFrame({
+        "true_class": y_true,
+        "pred_class": y_pred,
+        "pred_proba": y_proba,
+        "run_timestamp": datetime.utcnow().isoformat()
+    })
+
+    # Step 5: Write results to BigQuery
+    results_df.to_gbq(
+        destination_table=f"{DATASET}.{DEST_TABLE}",
+        project_id=PROJECT_ID,
+        if_exists="replace"  # change to "append" if you'd like to accumulate results
+    )
+
+with DAG(
+    dag_id="ml_prediction_pipeline",
+    start_date=days_ago(1),
+    schedule_interval=None,
+    catchup=False,
+    tags=["ml", "xgboost", "prediction"],
+) as dag:
+
+    predict_task = PythonOperator(
+        task_id="predict_and_write_to_bigquery",
+        python_callable=predict_and_write
+    )

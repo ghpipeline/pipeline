@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: globalhealthdatascience  # this is the logical name you'll use in `source()`
+    schema: world_bank_data  # this is the BigQuery dataset name
+    tables:
+      - name: chingchongbingbon  # this is the actual table name
