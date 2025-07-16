@@ -223,10 +223,6 @@ dbt build
 dbt run
 ```
 
-=======
->>>>>>> 0e9a3645a5eaabcd693683504caa69acc770f340
-
-
 ```
 dbt build
 ```
