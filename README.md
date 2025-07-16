@@ -217,8 +217,11 @@ IMPORTANT: Left unchecked, the dbt job will create a new table in bigquerey with
 
 Here is the link to the file of the dbt model where we are doing our transformation: [my_first_dbt_model.sql](dbt/models/my_first_dbt_model.sql)
 
-We will be needing a macro to bi-pass this. The file for this is here: [generate_schema_name.sql](dbt/macros/generate_schema_name.sql)
 
+
+We will need a basic yml file to link to our larger dbt folder. This needs to be in the main github repo (not the dbt folder) and can be found here: [dbt_project.yml](dbt_project.yml)
+
+We will be needing a macro to bi-pass this. The file for this is here: [generate_schema_name.sql](dbt/macros/generate_schema_name.sql)
 
 After getting the files above put in place, we can run the following commands in our dbt cloud IDE to run our transformations
 
