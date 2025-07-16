@@ -28,31 +28,26 @@ def predict_and_write():
     selector = joblib.load(SELECTOR_PATH)
     feature_names = joblib.load(FEATURE_NAMES_PATH)
 
-    # Separate target and features
     y_true = df["is_class_1"]
     df = df.drop(columns=["is_class_1"])
 
-    # Recreate dummy variables
+    # === Recreate all feature engineering from training ===
     categorical_cols = ["status", "voluntary_mandated", "initial_firm_notification", "country"]
     df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
 
-    # Add any missing columns (not present in DAG data but were seen during training)
+    # Add any missing dummy columns
     for col in feature_names:
         if col not in df.columns:
             df[col] = 0
 
-    # Reorder columns to match training order
+    # Reorder columns to match training
     df = df[feature_names]
 
-    # Apply scaler to numeric columns (assumes numeric columns are present in feature_names)
-    numeric_cols = [
-        "recall_duration_days", "time_to_classification_days", "report_lag_days",
-        "initiation_year", "initiation_month", "initiation_dayofweek"
-    ]
-    df[numeric_cols] = scaler.transform(df[numeric_cols])
+    # Now apply scaler to entire DataFrame as in training
+    X_scaled = scaler.transform(df)
 
-    # Apply feature selection
-    X_selected = selector.transform(df)
+    # Feature selection
+    X_selected = selector.transform(X_scaled)
 
     # Predict
     y_proba = model.predict_proba(X_selected)[:, 1]
@@ -65,13 +60,12 @@ def predict_and_write():
         "run_timestamp": datetime.utcnow().isoformat()
     })
 
-    # Write to BigQuery
     results_df.to_gbq(
         destination_table=f"{DATASET}.{DEST_TABLE}",
         project_id=PROJECT_ID,
-        if_exists="replace"  # change to "append" to accumulate results
+        if_exists="replace"
     )
-
+    
 with DAG(
     dag_id="ml_prediction_pipeline",
     start_date=days_ago(1),
