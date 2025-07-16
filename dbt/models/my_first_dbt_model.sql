@@ -19,7 +19,7 @@ select
     value,
     value * 10 as scaled_value,
 from source_data
-where indicator_value is not null
+where value is not null
 
 /*
     Uncomment the line below to remove records with null `id` values
