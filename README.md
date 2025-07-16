@@ -213,6 +213,10 @@ Important: DBT Cloud will automatically put all of its various folder and compen
 
 DBT allows you to build "models". A model is a essentially a sql style data base transformation that can be deployed, scheduled and scripted. Essentially, we are going to be doing all of this in sql.
 
+IMPORTANT: Left unchecked, the dbt job will create a new table in bigquerey with the prefix "dbt_ghpipeline_". We actually want the new transformation table to appear in the same world_bank_data that we started in.
+
+We will be needing a macro to bi-pass this. The file for this is here: [bigquerey.tf](terraform/bigquerey.tf)
+
 
 ```
 dbt build
