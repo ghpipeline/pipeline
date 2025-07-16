@@ -40,5 +40,6 @@ models:
     +materialized: table
     +schema: world_bank_data
     +generate_schema_name: custom
+    
     example:
       +materialized: table
