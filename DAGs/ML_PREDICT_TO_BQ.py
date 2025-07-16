@@ -7,40 +7,54 @@ import numpy as np
 import joblib
 from datetime import datetime
 
-# === Model paths (mounted in Docker from /models) ===
 MODEL_PATH = "/models/ml_models/xgb_model.joblib"
 SCALER_PATH = "/models/ml_scalers/scaler.joblib"
 SELECTOR_PATH = "/models/ml_scalers/feature_selector.joblib"
+FEATURE_NAMES_PATH = "/models/ml_scalers/feature_names.joblib"
 
-# === BigQuery config ===
 PROJECT_ID = "globalhealthdatascience"
 DATASET = "fda_enforcement_data"
 SOURCE_TABLE = "ml_preped"
 DEST_TABLE = "ml_predictions"
 
 def predict_and_write():
-    # Step 1: Load BigQuery data
     client = bigquery.Client(project=PROJECT_ID)
     query = f"SELECT * FROM `{PROJECT_ID}.{DATASET}.{SOURCE_TABLE}`"
     df = client.query(query).to_dataframe()
 
-    # Step 2: Load saved model artifacts
+    # Load saved model artifacts
     model = joblib.load(MODEL_PATH)
     scaler = joblib.load(SCALER_PATH)
     selector = joblib.load(SELECTOR_PATH)
+    feature_names = joblib.load(FEATURE_NAMES_PATH)
 
-    # Step 3: Extract and process features
+    # Separate target and features
     y_true = df["is_class_1"]
-    X_full = df.drop(columns=["is_class_1"])
+    df = df.drop(columns=["is_class_1"])
 
+    # Recreate dummy variables
+    categorical_cols = ["status", "voluntary_mandated", "initial_firm_notification", "country"]
+    df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
+
+    # Add any missing columns (not present in DAG data but were seen during training)
+    for col in feature_names:
+        if col not in df.columns:
+            df[col] = 0
+
+    # Reorder columns to match training order
+    df = df[feature_names]
+
+    # Apply scaler to numeric columns (assumes numeric columns are present in feature_names)
     numeric_cols = [
         "recall_duration_days", "time_to_classification_days", "report_lag_days",
         "initiation_year", "initiation_month", "initiation_dayofweek"
     ]
-    X_full[numeric_cols] = scaler.transform(X_full[numeric_cols])
-    X_selected = selector.transform(X_full)
+    df[numeric_cols] = scaler.transform(df[numeric_cols])
 
-    # Step 4: Make predictions
+    # Apply feature selection
+    X_selected = selector.transform(df)
+
+    # Predict
     y_proba = model.predict_proba(X_selected)[:, 1]
     y_pred = model.predict(X_selected)
 
@@ -51,11 +65,11 @@ def predict_and_write():
         "run_timestamp": datetime.utcnow().isoformat()
     })
 
-    # Step 5: Write results to BigQuery
+    # Write to BigQuery
     results_df.to_gbq(
         destination_table=f"{DATASET}.{DEST_TABLE}",
         project_id=PROJECT_ID,
-        if_exists="replace"  # change to "append" if you'd like to accumulate results
+        if_exists="replace"  # change to "append" to accumulate results
     )
 
 with DAG(
