@@ -12,12 +12,13 @@
 with source_data as (
 
     select *
-    from `globalhealthdatascience.world_bank_data`
+    from {{ source('world_bank_data', 'chingchongbingbong') }}
 
 )
 
 select *
 from source_data
+
 
 
 /*
