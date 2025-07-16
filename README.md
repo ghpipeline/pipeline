@@ -215,6 +215,8 @@ DBT allows you to build "models". A model is a essentially a sql style data base
 
 IMPORTANT: Left unchecked, the dbt job will create a new table in bigquerey with the prefix "dbt_ghpipeline_". We actually want the new transformation table to appear in the same world_bank_data that we started in.
 
+Here is the link to the file of the dbt model where we are doing our transformation: [my_first_dbt_model.sql](dbt/models/my_first_dbt_model.sql)
+
 We will be needing a macro to bi-pass this. The file for this is here: [generate_schema_name.sql](dbt/macros/generate_schema_name.sql)
 
 
