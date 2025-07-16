@@ -7,7 +7,7 @@
     Try changing "table" to "view" below
 */
 
-{{ config(materialized='table') }}
+{{ config(materialized='table', schema='world_bank_data') }}
 
 with source_data as (
     select *
