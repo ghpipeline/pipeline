@@ -24,16 +24,22 @@ The 2025 US Senate report on biotechnology and health data science (found here: 
 
 As a result, cost savings at any cost are of crucial importance. 
 
+1. Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). This is a good practice to address the bootstrapping required for building any startup. Furthermore, the data pipeline will be required for goal 2
 
-The idea of this project repo is to serve as an answer to the question "how do you create the best possible datapipeline with the lowest possible cost?"
-
-As both Everett and Dustin work at a finance company as data scientists, they are able to spend large amounts of company money on advanced data systems as well as compute costs. In this existing workplace, it is rare to pass an on any tool for cost reasons alone.
+2. Use public healthcare data combinied with a data-pipeline and ML models / AI to answer an important question.
 
 With an interest in starting a company/organization in the future (particularly in the biotech and global health space), Dustin and Everett understand that cost will be a major limiting factor for any future data pipeline pertaining to a new company. Understanding how to quickly delpoy an effective data pipeline at the lowest possible cost will be a useful exercise for any startup. In this repo, we will break down the differnt components of the pipeline (storage, compute cost, orchestration, transformation etc.). 
 
 This repo will also serve as a method to work on issues that Dustin and Everett find to be impactful. 
 
 ## Goal ##
+
+This project contains two important goals:
+
+1. Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). This is a good practice to address the bootstrapping required for building any startup. Furthermore, the data pipeline will be required for goal 2.
+
+2. Use public healthcare data combinied with a data-pipeline and ML models / AI to answer an important question.
+
 The final goal of this project should be to roll out an example of a quality and low-cost data pipeline that can be rolled out for any type of startup company seeking to create data infrastructure. The scope of this project will focus on global health and biotech data, as Dustin in particular is passionate about that field. Costs will be compared and broken down.
 
 1. Cost
