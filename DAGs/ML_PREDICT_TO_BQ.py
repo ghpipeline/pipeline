@@ -38,7 +38,7 @@ def predict_and_write():
         "initiation_year", "initiation_month", "initiation_dayofweek"
     ]
     X_full[numeric_cols] = scaler.transform(X_full[numeric_cols])
-    X_selected = selector.transform(X_full.values)
+    X_selected = selector.transform(X_full)
 
     # Step 4: Make predictions
     y_proba = model.predict_proba(X_selected)[:, 1]
