@@ -223,6 +223,8 @@ We will need a basic yml file to link to our larger dbt folder. This needs to be
 
 We need a second file where we break down the basic schema of the table that we are doing transformations on. Here is the link to that file: [schema.yml](dbt/models/schema.yml)
 
+It is recommended to create a sources.yml file to have better organization around the differnt data sources that you might have for a dbt project. Here is the link to that file: [sources.yml](dbt/models/sources.yml)
+
 
 We will be needing a macro to bi-pass this. The file for this is here: [generate_schema_name.sql](dbt/macros/generate_schema_name.sql)
 
