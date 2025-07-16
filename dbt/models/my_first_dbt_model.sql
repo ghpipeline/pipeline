@@ -15,10 +15,9 @@ with source_data as (
 )
 
 select
-    id,
-    country_name,
-    indicator_value,
-    indicator_value * 10 as scaled_indicator_value  -- simple transformation
+    country,
+    value,
+    value * 10 as scaled_indicator_value,
 from source_data
 where indicator_value is not null
 
