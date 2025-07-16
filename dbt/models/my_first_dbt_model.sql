@@ -10,16 +10,17 @@
 {{ config(materialized='table') }}
 
 with source_data as (
-
     select *
-    from {{ source('world_bank_data', 'chingchongbingbon') }}
-
+    from {{ source('world_bank_data', 'chingchongbingbong') }}
 )
 
-select *
+select
+    id,
+    country_name,
+    indicator_value,
+    indicator_value * 10 as scaled_indicator_value  -- simple transformation
 from source_data
-
-
+where indicator_value is not null
 
 /*
     Uncomment the line below to remove records with null `id` values
