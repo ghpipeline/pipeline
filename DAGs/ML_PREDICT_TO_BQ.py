@@ -43,6 +43,12 @@ def predict_and_write():
     # Reorder columns to match training
     df = df[feature_names]
 
+    # Drop any rows with NaNs
+    df.dropna(inplace=True)
+
+    # Align target variable length after dropping
+    y_true = y_true.loc[df.index]
+
     # Now apply scaler to entire DataFrame as in training
     X_scaled = scaler.transform(df)
 
