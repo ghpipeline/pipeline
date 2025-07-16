@@ -51,7 +51,7 @@ The final goal of this project should be to roll out an example of a quality and
 This is the current proposed system. This will be a working draft and will update we we learn more:
 - **Data Source** World Bank: https://documents.worldbank.org/en/publication/documents-reports/api
 - **Storage**: Google Cloud Storage (GCS)
-- **Infrastructure** Terraform Cloud
+- **Infrastructure**: Terraform Cloud
 - **Orchestration**: AirFlow + Docker
 - **Data Warehouse**: Google BigQuerey
 - **Transformations**: DBT
