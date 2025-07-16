@@ -11,7 +11,7 @@
 
 with source_data as (
     select *
-    from {{ source('world_bank_data', 'chingchongbingbon') }}
+    from {{ source('globalhealthdatascience', 'chingchongbingbon') }}
 )
 
 select
