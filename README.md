@@ -220,13 +220,8 @@ Here is the link to the file of the dbt model where we are doing our transformat
 We will be needing a macro to bi-pass this. The file for this is here: [generate_schema_name.sql](dbt/macros/generate_schema_name.sql)
 
 
-```
-dbt build
-```
+After getting the files above put in place, we can run the following commands in our dbt cloud IDE to run our transformations
 
-```
-dbt run
-```
 
 ```
 dbt build
@@ -235,7 +230,6 @@ dbt build
 ```
 dbt run
 ```
-
 
 
 ## Visualization: Looker-Studio ##
