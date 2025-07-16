@@ -17,7 +17,7 @@ with source_data as (
 select
     country,
     value,
-    value * 10 as scaled_indicator_value,
+    value * 10 as scaled_value,
 from source_data
 where indicator_value is not null
 
