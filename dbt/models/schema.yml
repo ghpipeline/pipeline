@@ -1,26 +1,71 @@
-
 version: 2
 
 models:
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: true_class
-            description: "its a country"
-            tests:
-                - not_null
-          - name: pred_class
-            description: "bro who cares"
-            tests:
-                - not_null
-          - name: pred_proba
-            description: "bro who cares"
-            tests:
-                - not_null
-          - name: run_timestamp
-            description: "bro who cares"
-            tests:
-                - not_null
+  - name: my_first_dbt_model
+    description: "Feature-engineered FDA recall dataset used for ML"
+    columns:
+      - name: recall_initiation_dt
+        description: "Parsed recall initiation date"
+      - name: center_classification_dt
+        description: "Parsed center classification date"
+      - name: termination_dt
+        description: "Parsed recall termination date"
+      - name: report_dt
+        description: "Parsed report date"
+      - name: recall_duration_days
+        description: "Days from initiation to termination of recall"
+      - name: time_to_classification_days
+        description: "Days from initiation to classification"
+      - name: report_lag_days
+        description: "Days from initiation to report date"
+      - name: initiation_year
+        description: "Year of recall initiation"
+      - name: initiation_month
+        description: "Month of recall initiation"
+      - name: initiation_dayofweek
+        description: "Day of the week the recall was initiated"
+      - name: desc_length
+        description: "Character length of cleaned description"
+      - name: desc_word_count
+        description: "Word count of cleaned description"
+      - name: has_injection
+        description: "True if 'injection' is mentioned in description"
+      - name: has_tablet
+        description: "True if 'tablet' is mentioned in description"
+      - name: has_capsule
+        description: "True if 'capsule' is mentioned in description"
+      - name: has_spray
+        description: "True if 'spray' is mentioned in description"
+      - name: has_single_unit
+        description: "True if product_quantity suggests a single unit"
+      - name: has_bulk
+        description: "True if product_quantity suggests bulk packaging"
+      - name: has_box
+        description: "True if product_quantity mentions a box"
+      - name: quantity_length
+        description: "Length of product_quantity string"
+      - name: quantity_word_count
+        description: "Word count of product_quantity string"
+      - name: is_us
+        description: "1 if country is UNITED STATES, else 0"
+        tests:
+          - not_null
+      - name: is_foreign
+        description: "1 if country is not UNITED STATES, else 0"
+      - name: is_ca_state
+        description: "1 if state is CA, else 0"
+      - name: mention_contamination
+        description: "True if reason mentions contamination"
+      - name: mention_label_error
+        description: "True if reason mentions labeling issues"
+      - name: mention_potency
+        description: "True if reason mentions potency/strength"
+      - name: mention_sterility
+        description: "True if reason mentions sterility"
+      - name: prepped_at
+        description: "Timestamp the row was processed"
+        tests:
+          - not_null
 
 
 

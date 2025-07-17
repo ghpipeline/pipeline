@@ -4,4 +4,4 @@ sources:
   - name: globalhealthdatascience  # this is the logical name you'll use in `source()`
     schema: fda_enforcement_data  # this is the BigQuery dataset name
     tables:
-      - name: ml_predictions  # this is the actual table name
+      - name: cleaned_data  # this is the actual table name
