@@ -20,7 +20,6 @@ select
     pred_proba,
     run_timestamp
 from source_data
-where value is not null
 
 /*
     Uncomment the line below to remove records with null `id` values
