@@ -185,7 +185,8 @@ This setup allows us to schedule, test, and run jobs directly on a GCP VM with m
 
 To see the specific folder with the scripts click: [here](DAGs)
 
-<img width="878" height="331" alt="Image" src="https://github.com/user-attachments/assets/fcdad3b9-c2d0-432c-a57c-943eb54b9b19" />
+
+After running our OPEN_FDA_ENFORCEMENT_DATA_PULL.py script and running the scheudling tool for a couple of days, we can see the daily version getting piped in as well as being datestamped in the  title of the file in the Google Bucket: <img width="878" height="331" alt="Image" src="https://github.com/user-attachments/assets/fcdad3b9-c2d0-432c-a57c-943eb54b9b19" />
 
 
 After running 
