@@ -35,9 +35,9 @@ This repo will also serve as a method to work on issues that Dustin and Everett 
 
 This project contains two important goals:
 
-1. Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). Ideally, this can be used as a platform that any founders can use as a platform to build their own pipelines for projects/companies they may want to build.
+1. **Platform** Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). Ideally, this can be used as a platform that any founders can use as a platform to build their own pipelines for projects/companies they may want to build.
 
-2. Use public healthcare data combinied with a data-pipeline and ML models / AI to answer an important question.
+2. **Project** Use public healthcare data combinied with a data-pipeline and ML models / AI to answer an important question.
 
 The final goal of this project should be to roll out an example of a quality and low-cost data pipeline that can be rolled out for any type of startup company seeking to create data infrastructure. The scope of this project will focus on global health and biotech data, as Dustin in particular is passionate about that field. Costs will be compared and broken down.
 
