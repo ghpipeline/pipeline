@@ -209,7 +209,7 @@ DBT allows you to build "models". A model is a essentially a sql style data base
 IMPORTANT: Left unchecked, the dbt job will create a new table in bigquerey with the prefix "dbt_ghpipeline_". We actually want the new transformation table to appear in the same world_bank_data that we started in.
 
 The dbt transformation that we are going to do is a combination of cleaning columns as well as preparing the necessary transformations on the data that allow it to function in an AI/ML model.
-Here is the link to the file: [my_first_dbt_model.sql](dbt/models/my_first_dbt_model.sql)
+Here is the link to the file: [my_first_dbt_model.sql](dbt/models/ml_preped.sql)
 
 
 We will need a basic yml file to link to our larger dbt folder. This needs to be in the main github repo (not the dbt folder) and can be found here: [dbt_project.yml](dbt_project.yml)
