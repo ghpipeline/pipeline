@@ -7,17 +7,18 @@
     Try changing "table" to "view" below
 */
 
-{{ config(materialized='table', schema='world_bank_data') }}
+{{ config(materialized='table', schema='fda_enforcement_data') }}
 
 with source_data as (
     select *
-    from {{ source('globalhealthdatascience', 'chingchongbingbon') }}
+    from {{ source('globalhealthdatascience', 'ml_predictions') }}
 )
 
 select
-    country,
-    value,
-    value * 10 as scaled_value,
+    true_class,
+    pred_class,
+    pred_proba,
+    run_timestamp
 from source_data
 where value is not null
 
