@@ -5,16 +5,27 @@ models:
     - name: my_first_dbt_model
       description: "A starter dbt model"
       columns:
-          - name: country
+          - name: true_class
             description: "its a country"
             tests:
                 - unique
                 - not_null
-          - name: value
+          - name: pred_class
             description: "bro who cares"
             tests:
                 - unique
                 - not_null
+          - name: pred_proba
+            description: "bro who cares"
+            tests:
+                - unique
+                - not_null
+          - name: run_timestamp
+            description: "bro who cares"
+            tests:
+                - unique
+                - not_null
+
 
 
 ##    - name: my_second_dbt_model
