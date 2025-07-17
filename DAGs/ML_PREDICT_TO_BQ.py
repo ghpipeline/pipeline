@@ -73,7 +73,7 @@ def predict_and_write():
     )
     
 with DAG(
-    dag_id="ml_prediction_pipeline",
+    dag_id="ml_predictions_to_BQ",
     start_date=days_ago(1),
     schedule_interval=None,
     catchup=False,
