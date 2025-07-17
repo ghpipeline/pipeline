@@ -185,6 +185,9 @@ This setup allows us to schedule, test, and run jobs directly on a GCP VM with m
 
 To see the specific folder with the scripts click: [here](DAGs)
 
+
+After running 
+
 ## Data Warehouse ##
 
 For setup instructions click [here](datawarehouse/)
