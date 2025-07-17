@@ -23,19 +23,19 @@ The 2025 US Senate report on biotechnology and health data science (found here: 
 
 As a result, cost savings at any cost are of crucial importance. 
 
-1. Pipeline Construction: Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). This is a good practice to address the bootstrapping required for building any startup. Furthermore, the data pipeline will be required for analytics and science.
-
-2. Data Science: Perform analysis on public healthcare data combinied with a data-pipeline to answer an important question. This is also where the obligitory AI / ML model will come into place as it is impossible in 2025 to have a data science project without the use of AI / ML due to fear of being seen as being "left behind".
-
 With an interest in starting a company/organization in the future (particularly in the biotech and global health space), Dustin and Everett understand that cost will be a major limiting factor for any future data pipeline pertaining to a new company. Understanding how to quickly delpoy an effective data pipeline at the lowest possible cost will be a useful exercise for any startup. In this repo, we will break down the differnt components of the pipeline (storage, compute cost, orchestration, transformation etc.). 
 
 This repo will also serve as a method to work on issues that Dustin and Everett find to be impactful. 
+
+1. Pipeline Construction: Create a data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). Ideally, this can be used as a platform that any founders can use as a platform to build their own pipelines for projects/companies they may want to build.
+
+2. Data Science: After the pipeline is created, perform analysis on public healthcare data combinied with a data-pipeline to answer an important question. This is also where the obligitory AI / ML model will come into place as it is impossible in 2025 to have a data science project without the use of AI / ML due to fear of being seen as being left behind.
 
 ## Goal ##
 
 This project contains two important goals:
 
-1. Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). This is a good practice to address the bootstrapping required for building any startup. Furthermore, the data pipeline will be required for goal 2.
+1. Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). Ideally, this can be used as a platform that any founders can use as a platform to build their own pipelines for projects/companies they may want to build.
 
 2. Use public healthcare data combinied with a data-pipeline and ML models / AI to answer an important question.
 
