@@ -204,7 +204,7 @@ All configuration code will be found in the bigquerey.tf file here: [bigquerey.t
 
 ## Data Base Transformation ##
 
-For setup instructions click [here](dbt/). 
+For setup instructions click [here](dbt/) and read the README.md. 
 
 Now that we have our data in Google Big Querey, we will need to do some basic table joins for the sake of our projects. For this, we will use DBT Cloud. DBT Cloud has a free forever policy for developers if you are using only one seat. This is perfectly accetable for us.
 
@@ -212,7 +212,23 @@ Now that we have our data in Google Big Querey, we will need to do some basic ta
 Important: DBT Cloud will automatically put all of its various folder and compenents in the main base folder of your repo. Using the DBT CLOUD IDE, I created a new folder titled "DBT" and put the sub folders in there to clean up the repo. You can see this here: [dbt folder](dbt/)
 
 DBT allows you to build "models". A model is a essentially a sql style data base transformation that can be deployed, scheduled and scripted. Essentially, we are going to be doing all of this in sql.
-<<<<<<< HEAD
+
+IMPORTANT: Left unchecked, the dbt job will create a new table in bigquerey with the prefix "dbt_ghpipeline_". We actually want the new transformation table to appear in the same world_bank_data that we started in.
+
+The dbt transformation that we are going to do is a combination of cleaning columns as well as preparing the necessary transformations on the data that allow it to function in an AI/ML model.
+Here is the link to the file: [my_first_dbt_model.sql](dbt/models/my_first_dbt_model.sql)
+
+
+We will need a basic yml file to link to our larger dbt folder. This needs to be in the main github repo (not the dbt folder) and can be found here: [dbt_project.yml](dbt_project.yml)
+
+We need a second file where we break down the basic schema of the table that we are doing transformations on. Here is the link to that file: [schema.yml](dbt/models/schema.yml)
+
+It is recommended to create a sources.yml file to have better organization around the differnt data sources that you might have for a dbt project. Here is the link to that file: [sources.yml](dbt/models/sources.yml)
+
+
+We will be needing a macro to bi-pass this. The file for this is here: [generate_schema_name.sql](dbt/macros/generate_schema_name.sql)
+
+After getting the files above put in place, we can run the following commands in our dbt cloud IDE to run our transformations
 
 
 ```
@@ -222,19 +238,6 @@ dbt build
 ```
 dbt run
 ```
-
-=======
->>>>>>> 0e9a3645a5eaabcd693683504caa69acc770f340
-
-
-```
-dbt build
-```
-
-```
-dbt run
-```
-
 
 
 ## Visualization: Looker-Studio ##
