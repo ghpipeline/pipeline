@@ -10,7 +10,6 @@
 - [Infrastructure](#infrastructure)
 - [Orchestration (Docker + Airflow)](#orchestration-docker--airflow)
 - [Scritps - DAGs](#DAGs)
-- [Transform](#transform)
 - [Data Warehouse](#data-warehouse)
 - [Data Base Transformation - DBT](#data-base-transformation)
 - [Visualization: Looker Studio](#visualization-looker-studio)
@@ -185,12 +184,6 @@ This setup allows us to schedule, test, and run jobs directly on a GCP VM with m
 ## DAGs ##
 
 To see the specific folder with the scripts click: [here](DAGs)
-
-## Transform ##
-
-For setup instructions click [here](transform/)
-
-For the sake of column name consistency, we are going to create a transform folder that will be run in every data pull to create consistency with column names. For best practice, we want all lower case letters with underscores beteen each word. Here is the folder [transform](transform/transformer.py)
 
 ## Data Warehouse ##
 
