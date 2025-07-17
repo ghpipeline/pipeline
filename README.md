@@ -199,11 +199,15 @@ After running
 
 For setup instructions click [here](datawarehouse/)
 
-We are going to be useing Google BigQuery for our datawarehouse. This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
+We are going to be useing Google BigQuery for our data warehouse. This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
 
 It should be noted that we are setting this up in Terraform.
 
 All configuration code will be found in the bigquerey.tf file here: [bigquerey.tf](terraform/bigquerey.tf)
+
+After terraform is executed, the Google BigQuery setup is complete (see below)
+
+<img width="1072" height="347" alt="Image" src="https://github.com/user-attachments/assets/1f5635d6-54ac-4429-a4e5-4bcb00ee4582" />
 
 ## Data Base Transformation ##
 
