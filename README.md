@@ -93,7 +93,7 @@ We will first use GCP buckets to store our raw data in a cloud storage location.
 
 All initial data will be put into this folder in a sub_folder titled "raw_data". For the AI/ML process that we will be performing later, data will be taken from this bucket into a data warehouse using Google Bigquerey (see "Data Warehouse" section below for this step).
 
-After setup is complete, the result should look like this: <img width="356" height="492" alt="Image" src="https://github.com/user-attachments/assets/0ea52291-bd80-4cbc-aeb4-254173ec1499" />
+After setup is complete, the result should look like this: <img width="399" height="128" alt="Image" src="https://github.com/user-attachments/assets/940b0279-6aa4-4d87-8dc0-7461494da1ef" />
 
 
 ## Infrastructure ##
