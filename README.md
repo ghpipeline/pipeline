@@ -23,21 +23,21 @@ The 2025 US Senate report on biotechnology and health data science (found here: 
 
 As a result, cost savings at any cost are of crucial importance. 
 
-1. Pipeline Construction: Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). This is a good practice to address the bootstrapping required for building any startup. Furthermore, the data pipeline will be required for analytics and science.
-
-2. Data Science: Perform analysis on public healthcare data combinied with a data-pipeline to answer an important question. This is also where the obligitory AI / ML model will come into place as it is impossible in 2025 to have a data science project without the use of AI / ML due to fear of being seen as being "left behind".
-
 With an interest in starting a company/organization in the future (particularly in the biotech and global health space), Dustin and Everett understand that cost will be a major limiting factor for any future data pipeline pertaining to a new company. Understanding how to quickly delpoy an effective data pipeline at the lowest possible cost will be a useful exercise for any startup. In this repo, we will break down the differnt components of the pipeline (storage, compute cost, orchestration, transformation etc.). 
 
 This repo will also serve as a method to work on issues that Dustin and Everett find to be impactful. 
 
+1. Pipeline Construction: Create a data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). Ideally, this can be used as a platform that any founders can use as a platform to build their own pipelines for projects/companies they may want to build.
+
+2. Data Science: After the pipeline is created, perform analysis on public healthcare data combinied with a data-pipeline to answer an important question. This is also where the obligitory AI / ML model will come into place as it is impossible in 2025 to have a data science project without the use of AI / ML due to fear of being seen as being left behind.
+
 ## Goal ##
 
-This project contains two important goals:
+This project contains two important goals: 1) Build a data-pipeline as a platform for others to use and 2) use the created pipeline to perform a healthcare realted data-science project.
 
-1. Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). This is a good practice to address the bootstrapping required for building any startup. Furthermore, the data pipeline will be required for goal 2.
+**Platform:** Create an enterprise-grade data pipeline and data warehouse at the lowest possible cost (ideally zero dollars). Ideally, this can be used as a platform that any founders can use as a platform to build their own pipelines for projects/companies they may want to build.
 
-2. Use public healthcare data combinied with a data-pipeline and ML models / AI to answer an important question.
+**Project:** Use public healthcare data combinied with a data-pipeline and ML models / AI to answer an important question.
 
 The final goal of this project should be to roll out an example of a quality and low-cost data pipeline that can be rolled out for any type of startup company seeking to create data infrastructure. The scope of this project will focus on global health and biotech data, as Dustin in particular is passionate about that field. Costs will be compared and broken down.
 
@@ -78,11 +78,6 @@ $ source .venv-3.10/bin/activate
 
 For the source of our data, we are going to be pulling from the World Bank dataset. This is a free dataset with a REST API that can be pulled by anyone. The api link is https://api.worldbank.org/v2/
 
-Here is the link the file: [data pull](scripts/datapull.py)
-
-Using the link above, we are able to call a json response from the REST API and convert it to a dataframe.
-
-
 ## Storage ##
 
 We will be using the Google Cloud Platform (GCP) for cloud storage.
@@ -92,6 +87,10 @@ For setup instructions click [here](storage/)
 We will first use GCP buckets to store our raw data in a cloud storage location. The bucket will be called "fda_enforcement_data".
 
 All initial data will be put into this folder in a sub_folder titled "raw_data". For the AI/ML process that we will be performing later, data will be taken from this bucket into a data warehouse using Google Bigquerey (see "Data Warehouse" section below for this step).
+
+After setup is complete, the result should look like this:
+
+<img width="399" height="128" alt="Image" src="https://github.com/user-attachments/assets/940b0279-6aa4-4d87-8dc0-7461494da1ef" />
 
 
 ## Infrastructure ##
@@ -185,15 +184,25 @@ This setup allows us to schedule, test, and run jobs directly on a GCP VM with m
 
 To see the specific folder with the scripts click: [here](DAGs)
 
+
+After running our OPEN_FDA_ENFORCEMENT_DATA_PULL.py script and running the scheudling tool for a couple of days, we can see the daily version getting piped in as well as being datestamped in the  title of the file in the Google Bucket: <img width="878" height="331" alt="Image" src="https://github.com/user-attachments/assets/fcdad3b9-c2d0-432c-a57c-943eb54b9b19" />
+
+
+After running 
+
 ## Data Warehouse ##
 
 For setup instructions click [here](datawarehouse/)
 
-We are going to be useing Google BigQuery for our datawarehouse. This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
+We are going to be useing Google BigQuery for our data warehouse. This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
 
 It should be noted that we are setting this up in Terraform.
 
 All configuration code will be found in the bigquerey.tf file here: [bigquerey.tf](terraform/bigquerey.tf)
+
+After terraform is executed, the Google BigQuery setup is complete (see below)
+
+<img width="1072" height="347" alt="Image" src="https://github.com/user-attachments/assets/1f5635d6-54ac-4429-a4e5-4bcb00ee4582" />
 
 ## Data Base Transformation ##
 
@@ -209,7 +218,7 @@ DBT allows you to build "models". A model is a essentially a sql style data base
 IMPORTANT: Left unchecked, the dbt job will create a new table in bigquerey with the prefix "dbt_ghpipeline_". We actually want the new transformation table to appear in the same world_bank_data that we started in.
 
 The dbt transformation that we are going to do is a combination of cleaning columns as well as preparing the necessary transformations on the data that allow it to function in an AI/ML model.
-Here is the link to the file: [my_first_dbt_model.sql](dbt/models/my_first_dbt_model.sql)
+Here is the link to the file: [ml_preped.sql](dbt/models/ml_preped.sql)
 
 
 We will need a basic yml file to link to our larger dbt folder. This needs to be in the main github repo (not the dbt folder) and can be found here: [dbt_project.yml](dbt_project.yml)
@@ -231,6 +240,10 @@ dbt build
 ```
 dbt run
 ```
+
+Now that the data has been scripted, scheduled and ran successfully, a new item in our Big Querey dataset appears titled "ml_preped". As you can see below, the data is prepared and ready to go.
+
+<img width="1498" height="768" alt="Image" src="https://github.com/user-attachments/assets/c20f871c-84b8-4008-94be-1538e1821a39" />
 
 
 ## Visualization: Looker-Studio ##
