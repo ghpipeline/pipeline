@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: ml_prepred.sql
+  - name: ml_preped
     description: "Feature-engineered FDA recall dataset used for ML"
     columns:
       - name: recall_initiation_dt
