@@ -4,6 +4,8 @@ Go to https://lookerstudio.google.com, click the "use it for free" button. Sign 
 
 After logging in, click the "create" button followed by "report". You will be prompted to fill in some basic information about your coutry and company.
 
-Under the "add data to your report section", click the Big Querey option. After successful sign-in, you will then be able to select the project, datasource, and dataset that you would like to visualize.
+In Bigquerey, go to the dataset that you created (in our case it is ml_predictions). Select all from the dataset, and the click "open with" and select select "looker studio".
 
-For us, we will be clicking on the globalhealthdatascience project, the fda_enforcement_data datset source and the ml_preped table.
+Now we can start working on our dashboard. 
+
+<img width="1474" height="736" alt="Image" src="https://github.com/user-attachments/assets/4ad1ae6b-7f22-4358-98ed-1dd9928b32e3" />
