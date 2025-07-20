@@ -12,7 +12,7 @@
 - [Scritps - DAGs](#DAGs)
 - [Data Warehouse](#data-warehouse)
 - [Data Base Transformation - DBT](#data-base-transformation)
-- [Visualization: Looker Studio](#visualization-looker-studio)
+- [Visualization: Looker-Studio Dashboard](#visualization-looker-studio-dashboard)
 
 ## Overview ##
 
