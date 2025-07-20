@@ -76,7 +76,26 @@ $ source .venv-3.10/bin/activate
 
 ## Data Source ##
 
-For the source of our data, we are going to be pulling from the World Bank dataset. This is a free dataset with a REST API that can be pulled by anyone. The api link is https://api.worldbank.org/v2/
+## Dataset Overview: openFDA Drug Enforcement Reports
+
+We use the **openFDA Drug Enforcement Reports** dataset, a publicly available dataset published by the U.S. Food and Drug Administration (FDA) to track and monitor drug recalls initiated in the United States.
+
+### Why We Chose This Dataset
+
+- **Relevance & Public Impact**  
+  Drug recalls directly affect public health, making this dataset highly relevant for real-world machine learning applications with tangible outcomes.
+
+- **Structured + Unstructured Data**  
+  The dataset combines structured fields (e.g. dates, states, status codes) with rich unstructured text (e.g. recall reasons, product descriptions), allowing us to build a hybrid model that leverages both numeric and NLP-based features.
+
+- **Regulatory Value**  
+  Predicting recall severity (especially identifying Class I recalls) can support risk mitigation and regulatory prioritization, helping agencies or private stakeholders identify high-risk cases early.
+
+- **Open Access & Transparency**  
+  Being freely available and well-documented, the openFDA dataset enables reproducibility and transparency in model development.
+
+- **Understudied in ML**  
+  Despite its importance, this dataset is relatively underexplored in applied machine learning literature—giving our project both novelty and room for impactful insights.
 
 ## Storage ##
 
