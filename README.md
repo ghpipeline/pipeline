@@ -266,7 +266,7 @@ Now that the data has been scripted, scheduled and ran successfully, a new item 
 <img width="1498" height="768" alt="Image" src="https://github.com/user-attachments/assets/c20f871c-84b8-4008-94be-1538e1821a39" />
 
 
-## Visualization: Looker-Studio ##
+## Visualization: Looker-Studio Dashboard ##
 
 We use **Looker Studio** to visualize high-level results from our machine learning pipeline. The dashboard is directly connected to our BigQuery warehouse and provides a **real-time overview** of model performance and prediction outcomes. We chose Looker Studio because it's free to use and integrates seamlessly with our other Google Cloud services, making it an ideal choice for fast, scalable reporting.
 
