@@ -57,6 +57,7 @@ This is the current proposed system. This will be a working draft and will updat
 - **Visualization**: Looker-Studio
 
 ![pipeline-diagram-fixed](https://github.com/user-attachments/assets/d6f3c4ac-e957-4739-a688-2b13aa26e0e9)
+<img width="1001" height="470" alt="ghpipeline drawio" src="https://github.com/user-attachments/assets/fdb719c5-38b2-4cf1-9238-eba88468ad6d" />
 
 ## Getting Started
 set up environment
