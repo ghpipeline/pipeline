@@ -48,7 +48,7 @@ The final goal of this project should be to roll out an example of a quality and
 
 ## Architecture
 This is the current proposed system. This will be a working draft and will update we we learn more:
-- **Data Source** World Bank: https://documents.worldbank.org/en/publication/documents-reports/api
+- **Data Source** openFDA drug enforcement reports API: https://open.fda.gov/apis/drug/enforcement/
 - **Storage**: Google Cloud Storage (GCS)
 - **Infrastructure**: Terraform Cloud
 - **Orchestration**: AirFlow + Docker
