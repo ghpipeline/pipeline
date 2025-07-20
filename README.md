@@ -268,13 +268,24 @@ Now that the data has been scripted, scheduled and ran successfully, a new item 
 
 ## Visualization: Looker-Studio ##
 
-For our visualization tool, we are going to be using Looker Studio.
-
-This is because 1) it is free, and 2) it is a GCP product that integrates easily.
+We use **Looker Studio** to visualize high-level results from our machine learning pipeline. The dashboard is directly connected to our BigQuery warehouse and provides a **real-time overview** of model performance and prediction outcomes. We chose Looker Studio because it's free to use and integrates seamlessly with our other Google Cloud services, making it an ideal choice for fast, scalable reporting.
 
 For setup instructions click [here](visualization/)
 
+### Purpose
+This dashboard helps us:
+- **Monitor model predictions** over time (e.g. count of predicted Class I recalls)
+- **Compare true vs predicted labels** for recent recall records
+- **Track overall pipeline output** from ingestion through prediction
 
-ML Performance Dashboard: https://lookerstudio.google.com/s/gQ3uW97BxuY
+It’s designed as a foundation for future insights — as the project evolves, we plan to expand the dashboard to include more granular views, such as recall reasons, geography, and time-based trends.
+
+### Live ML Performance Dashboard
+
+[View the Looker Studio Dashboard](https://lookerstudio.google.com/s/gQ3uW97BxuY)
+
+
+
+
 
 
