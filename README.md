@@ -76,9 +76,9 @@ $ source .venv-3.10/bin/activate
 
 ## Data Source ##
 
-## Dataset Overview: openFDA Drug Enforcement Reports
+We use the **openFDA Drug Enforcement Reports** dataset, a publicly available resource from the U.S. Food and Drug Administration (FDA) that tracks and monitors drug recalls initiated in the United States.
 
-We use the **openFDA Drug Enforcement Reports** dataset, a publicly available dataset published by the U.S. Food and Drug Administration (FDA) to track and monitor drug recalls initiated in the United States.
+This data is accessed programmatically via the [openFDA API](https://open.fda.gov/apis/enforcement/), allowing us to build automated, reproducible pipelines for ingestion and transformation. The API is updated **weekly**, which makes it an ideal choice for ongoing machine learning workflows where up-to-date information is crucial.
 
 ### Why We Chose This Dataset
 
@@ -91,11 +91,12 @@ We use the **openFDA Drug Enforcement Reports** dataset, a publicly available da
 - **Regulatory Value**  
   Predicting recall severity (especially identifying Class I recalls) can support risk mitigation and regulatory prioritization, helping agencies or private stakeholders identify high-risk cases early.
 
-- **Open Access & Transparency**  
-  Being freely available and well-documented, the openFDA dataset enables reproducibility and transparency in model development.
+- **Open Access, API-Based, and Frequently Updated**  
+  The openFDA dataset is freely available, well-documented, and updated on a **weekly basis**. This ensures our models can stay current with the most recent recall trends and enforcement actions. Its API-first design also allows seamless integration into cloud-based pipelines.
 
 - **Understudied in ML**  
   Despite its importance, this dataset is relatively underexplored in applied machine learning literature—giving our project both novelty and room for impactful insights.
+
 
 ## Storage ##
 
