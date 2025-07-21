@@ -16,3 +16,16 @@ Once your model is built and tested. You can schedule the job to run in the DBT 
 NOTE: With a pro-version, you can generate an API token and include this in the larger DAG script. As we are not paying for that version, we have to schedule our jobs using the Cloud IDE. 
 
 To do this, log into the UI, click on "Orchastration" and then "Jobs". Then click "create job" followed by "deploy job". After that, you can schedule a specific sql dbt command to run at a scheduled time.
+
+
+
+After getting all files above put in place, we can run the following commands in our dbt cloud IDE to run our transformations
+
+
+```
+dbt build
+```
+
+```
+dbt run
+```
