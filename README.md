@@ -111,8 +111,7 @@ All initial data will be put into this folder in a sub_folder titled "raw_data".
 
 After setup is complete, the result should look like this:
 
-<img width="399" height="128" alt="Image" src="https://github.com/user-attachments/assets/940b0279-6aa4-4d87-8dc0-7461494da1ef" />
-
+<img width="1001" height="470" alt="GHpipeline drawio (1)" src="https://github.com/user-attachments/assets/662fb482-1e4e-4d31-8958-ee2d93e40cc5" />
 
 ## Infrastructure ##
 
