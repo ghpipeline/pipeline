@@ -61,22 +61,8 @@ This is the current proposed system. This will be a working draft and will updat
 
 ## Getting Started
 
-[here](getting_started/). 
+Before beginning, you will need to install the correct version of python as well as the various packages used for this project in the requirnments.txt file. This can all be found [here](getting_started/). 
 
-set up environment
-
-## you will need python 3.10 - use pyenv perhaps to be able to install various pythons
-
-## virtual environment
-```
-$ python3 --version
-$ python3.10 -m venv .venv-3.10
-$ source .venv-3.10/bin/activate
-(venv) $
-```
-
-## install requirements
-`pip install -r requirements.txt`
 
 ## Data Source ##
 
