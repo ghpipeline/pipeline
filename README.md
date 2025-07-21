@@ -13,6 +13,7 @@
 - [Data Warehouse](#data-warehouse)
 - [Data Base Transformation - DBT](#data-base-transformation)
 - [Visualization: Looker-Studio Dashboard](#visualization-looker-studio-dashboard)
+- [Final Results: What Do They Mean](#final_results_what_do_they_mean)
 
 ## Overview ##
 
@@ -285,7 +286,7 @@ It’s designed as a foundation for future insights — as the project evolves, 
 [View the Looker Studio Dashboard](https://lookerstudio.google.com/s/gQ3uW97BxuY)
 
 
-**What Our Results Mean/Show:**
+### Final Results: What Do They Mean
 
 
 
