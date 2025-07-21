@@ -8,5 +8,9 @@ $ source .venv-3.10/bin/activate
 (venv) $
 ```
 
+Once this is done, the proper version of python should be installed.
+
 ## install requirements
 `pip install -r requirements.txt`
+
+Once this is done, all necessary packages for this project should be installed as well.
