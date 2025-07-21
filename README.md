@@ -13,7 +13,7 @@
 - [Data Warehouse](#data-warehouse)
 - [Data Base Transformation - DBT](#data-base-transformation)
 - [Visualization: Looker-Studio Dashboard](#visualization-looker-studio-dashboard)
-- [Final Results and Meaning](#final_results_and_meaning)
+- [Final Results and Meaning](#final-results-and-meaning)
 
 ## Overview ##
 
