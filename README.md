@@ -281,12 +281,12 @@ This dashboard helps us:
 
 It’s designed as a foundation for future insights — as the project evolves, we plan to expand the dashboard to include more granular views, such as recall reasons, geography, and time-based trends.
 
-### Live ML Performance Dashboard
+## Live ML Performance Dashboard ##
 
 [View the Looker Studio Dashboard](https://lookerstudio.google.com/s/gQ3uW97BxuY)
 
 
-### Final Results And Meaning
+## Final Results and Meaning ##
 
 
 
