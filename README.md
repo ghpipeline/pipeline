@@ -195,17 +195,6 @@ It is recommended to create a sources.yml file to have better organization aroun
 
 We will be needing a macro to bi-pass this. The file for this is here: [generate_schema_name.sql](dbt/macros/generate_schema_name.sql)
 
-After getting the files above put in place, we can run the following commands in our dbt cloud IDE to run our transformations
-
-
-```
-dbt build
-```
-
-```
-dbt run
-```
-
 Now that the data has been scripted, scheduled and ran successfully, a new item in our Big Querey dataset appears titled "ml_preped". As you can see below, the data is prepared and ready to go.
 
 <img width="1498" height="768" alt="Image" src="https://github.com/user-attachments/assets/c20f871c-84b8-4008-94be-1538e1821a39" />
