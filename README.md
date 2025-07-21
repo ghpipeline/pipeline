@@ -60,6 +60,9 @@ This is the current proposed system. This will be a working draft and will updat
 <img width="1001" height="470" alt="GHpipeline drawio (1)" src="https://github.com/user-attachments/assets/93281ed8-2961-43cb-a9f2-ebdeb95b95c5" />
 
 ## Getting Started
+
+[here](getting_started/). 
+
 set up environment
 
 ## you will need python 3.10 - use pyenv perhaps to be able to install various pythons
