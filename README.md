@@ -24,7 +24,7 @@ The 2025 US Senate report on biotechnology and health data science (found here: 
 
 As a result, cost savings at any cost are of crucial importance. 
 
-With an interest in starting a company/organization in the future (particularly in the biotech and global health space), Dustin and Everett understand that cost will be a major limiting factor for any future data pipeline pertaining to a new company. Understanding how to quickly delpoy an effective data pipeline at the lowest possible cost will be a useful exercise for any startup. In this repo, we will break down the differnt components of the pipeline (storage, compute cost, orchestration, transformation etc.). 
+With an interest in starting a company/organization in the future (particularly in the biotech and global health space), Dustin understands that cost will be a major limiting factor for any future data pipeline pertaining to a new company. Understanding how to quickly delpoy an effective data pipeline at the lowest possible cost will be a useful exercise for any startup. In this repo, we will break down the differnt components of the pipeline (storage, compute cost, orchestration, transformation etc.). 
 
 This repo will also serve as a method to work on issues that Dustin finds to be impactful. 
 
