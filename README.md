@@ -92,19 +92,19 @@ This data is accessed programmatically via the [openFDA API](https://open.fda.go
 
 We will be using the Google Cloud Platform (GCP) for cloud storage.
 
-For setup instructions click [here](storage/)
-
 We will first use GCP buckets to store our raw data in a cloud storage location. The bucket will be called "fda_enforcement_data".
 
 All initial data will be put into this folder in a sub_folder titled "raw_data". For the AI/ML process that we will be performing later, data will be taken from this bucket into a data warehouse using Google Bigquerey (see "Data Warehouse" section below for this step).
 
 After setup is complete, the result should look like this:
 
+
+For setup instructions click [here](storage/)
+
+
 ## Infrastructure ##
 
 We are using Terraform Cloud
-
-For setup instructions click [here](terraform/). 
 
 Terraform stores files as .tf files.
 
@@ -130,10 +130,10 @@ terraform apply
 And BOOM. That then creates all infrastructure in GCP without needing to manually click and point.
 
 
+For setup instructions click [here](terraform/). 
 
 ## Orchestration (Docker + Airflow) ##
 
-For setup instructions click [here](orchestration/)
 
 To keep orchestration costs low and maintain full control of our environment, we are using **Apache Airflow** deployed via **Docker Compose** on a lightweight **GCP VM** (Ubuntu). This avoids the higher costs of managed orchestration tools like Cloud Composer while remaining scalable and portable.
 
@@ -150,6 +150,7 @@ Airflow reads DAG scripts from the `dags/` directory, and we use a `PythonOperat
 
 This setup allows us to schedule, test, and run jobs directly on a GCP VM with minimal resource requirements. Docker provides containerized isolation and reproducibility, while Airflow handles job orchestration, task retries, scheduling, and logging. Together, they form the operational backbone of this pipeline.
 
+For setup instructions click [here](orchestration/)
 
 ## DAGs ##
 
@@ -161,8 +162,6 @@ After running our OPEN_FDA_ENFORCEMENT_DATA_PULL.py script and running the scheu
 
 ## Data Warehouse ##
 
-For setup instructions click [here](datawarehouse/)
-
 We are going to be useing Google BigQuery for our data warehouse. This will help us stay within the GCP ecosystem and minimize costs with our starter plan. 
 
 It should be noted that we are setting this up in Terraform.
@@ -173,9 +172,9 @@ After terraform is executed, the Google BigQuery setup is complete (see below)
 
 <img width="1072" height="347" alt="Image" src="https://github.com/user-attachments/assets/1f5635d6-54ac-4429-a4e5-4bcb00ee4582" />
 
-## Data Base Transformation ##
+For setup instructions click [here](datawarehouse/)
 
-For setup instructions click [here](dbt/). 
+## Data Base Transformation ##
 
 Now that we have our data in Google Big Querey, we will need to do some basic table joins for the sake of our projects. For this, we will use DBT Cloud. DBT Cloud has a free forever policy for developers if you are using only one seat. This is perfectly accetable for us.
 
@@ -213,6 +212,9 @@ dbt run
 Now that the data has been scripted, scheduled and ran successfully, a new item in our Big Querey dataset appears titled "ml_preped". As you can see below, the data is prepared and ready to go.
 
 <img width="1498" height="768" alt="Image" src="https://github.com/user-attachments/assets/c20f871c-84b8-4008-94be-1538e1821a39" />
+
+
+For setup instructions click [here](dbt/). 
 
 
 ## Visualization: Looker-Studio Dashboard ##
