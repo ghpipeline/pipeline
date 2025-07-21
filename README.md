@@ -57,7 +57,7 @@ This is the current proposed system. This will be a working draft and will updat
 - **Transformations**: DBT
 - **Visualization**: Looker-Studio
 
-<img width="1001" height="470" alt="ghpipeline drawio" src="https://github.com/user-attachments/assets/fdb719c5-38b2-4cf1-9238-eba88468ad6d" />
+<img width="1001" height="470" alt="GHpipeline drawio (1)" src="https://github.com/user-attachments/assets/93281ed8-2961-43cb-a9f2-ebdeb95b95c5" />
 
 ## Getting Started
 set up environment
