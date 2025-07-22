@@ -6,6 +6,7 @@
 - [Architecture](#architecture)
 - [Getting Started](#getting-started)
 - [Data Source](#data-source)
+- [Project Context & Modeling Goal](#project-context--modeling-goal)
 - [Storage](#storage)
 - [Infrastructure](#infrastructure)
 - [Orchestration (Docker + Airflow)](#orchestration-docker--airflow)
