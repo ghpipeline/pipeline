@@ -47,6 +47,29 @@ The final goal of this project should be to roll out an example of a quality and
 3. Scalability
 4. Impact
 
+## Project Context & Modeling Goal
+
+We use the [openFDA Drug Enforcement Reports API](https://open.fda.gov/apis/drug/enforcement/) as our primary data source. This public dataset provides detailed information on drug recalls initiated in the United States, including severity classifications, product descriptions, recall reasons, and dates.
+
+### Why This Matters
+Not all recalls are equally serious — the FDA classifies them into:
+- **Class I:** Dangerous or defective products that could cause serious health problems or death
+- **Class II & III:** Less urgent but still important
+
+Understanding and anticipating which recalls are likely to be **Class I** is critical for:
+- Supporting proactive regulatory review
+- Helping stakeholders identify and prioritize high-risk cases
+- Improving downstream public health outcomes
+
+### Our ML Goal
+Our goal is to **predict whether a drug recall will be classified as Class I** using information available at the time of the recall initiation. This includes:
+- Structured fields (dates, location, firm details)
+- Unstructured text (product descriptions, recall reasons)
+- Engineered features from both text and metadata
+
+This forms the backbone of a larger pipeline that can eventually support **real-time risk scoring** of recalls as they are reported.
+
+
 ## Architecture
 This is the current proposed system. This will be a working draft and will update we we learn more:
 - **Data Source** openFDA drug enforcement reports API: https://open.fda.gov/apis/drug/enforcement/
