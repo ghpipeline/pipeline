@@ -256,10 +256,10 @@ The Looker Studio dashboard presents performance metrics and model predictions *
 - Confusion matrix values (TP, FP, TN, FN)
 - Overall model confidence scores and accuracy breakdowns:
 
-    - **Accuracy:** XX%
-    - **Precision (Class I):** XX%
-    - **Recall (Class I):** XX%
-    - **ROC AUC:** XX
+    - **Accuracy:** 98%
+    - **Precision (Class I):** 97%
+    - **Recall (Class I):** 82%
+    - **ROC AUC:** 89
 
 We use this full-dataset view to monitor how the model behaves **across all historical recall data**, which is especially useful when validating the model's utility in practical settings.
 
