@@ -14,7 +14,7 @@
 - [Data Warehouse](#data-warehouse)
 - [Data Base Transformation - DBT](#data-base-transformation)
 - [Visualization: Looker-Studio Dashboard](#visualization-looker-studio-dashboard)
-- [Final Results & Interpretation](#final-results-and-meaning)
+- [Final Results & Interpretation](#final-results-&-Interpretation)
 
 ## Overview ##
 
