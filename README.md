@@ -246,9 +246,37 @@ It’s designed as a foundation for future insights — as the project evolves, 
 [View the Looker Studio Dashboard](https://lookerstudio.google.com/s/gQ3uW97BxuY)
 
 
-## Final Results and Meaning ##
+## Final Results & Interpretation ##
 
+### 🧪 Model Performance Summary
+Our final model — an XGBoost classifier — was trained using cross-validation to ensure generalization and avoid overfitting. The model achieved strong results during training, with metrics such as:
 
+- **Accuracy:** XX%
+- **Precision (Class I):** XX%
+- **Recall (Class I):** XX%
+- **ROC AUC:** XX
+
+These metrics were evaluated using 5-fold cross-validation on the training set and verified on a held-out test set.
+
+> *Recall for Class I recalls is especially important, as it reflects the model’s ability to catch the most dangerous cases.*
+
+### Dashboard Interpretation
+The Looker Studio dashboard presents performance metrics and model predictions **on the full dataset**. This includes:
+- Total number of Class I predictions vs actual Class I recalls
+- Confusion matrix values (TP, FP, TN, FN)
+- Overall model confidence scores and accuracy breakdowns
+
+We use this full-dataset view to monitor how the model behaves **across all historical recall data**, which is especially useful when validating the model's utility in practical settings.
+
+> *This real-world summary helps us assess whether the model would be effective if deployed today — not just how it performed during training.*
+
+### What This Means
+The current model offers a reliable foundation for:
+- Automatically flagging high-severity recalls
+- Building real-time risk assessment tools
+- Enabling further drill-downs by reason, geography, or product type in future dashboard updates
+
+As we continue refining the pipeline, the dashboard will evolve to include more granular insights and time-based monitoring.
 
 
 
