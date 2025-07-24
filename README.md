@@ -15,7 +15,7 @@
 - [Data Base Transformation - DBT](#data-base-transformation)
 - [ML Strategy & Modeling Techniques](#ML-Strategy-&-Modeling-Techniques)
 - [Visualization: Looker-Studio Dashboard](#visualization-looker-studio-dashboard)
-- [Final Results & Interpretation](#final-results-&-Interpretation)
+- [Final Results & Interpretation](#final-results-&-interpretation)
 
 ## Overview ##
 
