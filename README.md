@@ -14,7 +14,7 @@
 - [Data Warehouse](#data-warehouse)
 - [Data Base Transformation - DBT](#data-base-transformation)
 - [Visualization: Looker-Studio Dashboard](#visualization-looker-studio-dashboard)
-- [Final Results and Meaning](#final-results-and-meaning)
+- [Final Results & Interpretation](#final-results-and-meaning)
 
 ## Overview ##
 
@@ -248,7 +248,7 @@ It’s designed as a foundation for future insights — as the project evolves, 
 
 ## Final Results & Interpretation ##
 
-### 🧪 Model Performance Summary
+### Model Performance Summary
 Our final model — an XGBoost classifier — was trained using cross-validation to ensure generalization and avoid overfitting. The model achieved strong results during training, with metrics such as:
 
 - **Accuracy:** XX%
