@@ -13,9 +13,9 @@
 - [Scritps - DAGs](#DAGs)
 - [Data Warehouse](#data-warehouse)
 - [Data Base Transformation - DBT](#data-base-transformation)
-- [ML Strategy & Modeling Techniques](#ML-Strategy-&-Modeling-Techniques)
+- [ML Strategy & Modeling Techniques](#ML-Strategy--Modeling-Techniques)
 - [Visualization: Looker-Studio Dashboard](#visualization-looker-studio-dashboard)
-- [Final Results & Interpretation](#final-results-&-interpretation)
+- [Final Results & Interpretation](#final-results--interpretation)
 
 ## Overview ##
 
