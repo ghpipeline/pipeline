@@ -13,6 +13,7 @@
 - [Scritps - DAGs](#DAGs)
 - [Data Warehouse](#data-warehouse)
 - [Data Base Transformation - DBT](#data-base-transformation)
+- [ML Strategy & Modeling Techniques](#ML-Strategy-&-Modeling-Techniques)
 - [Visualization: Looker-Studio Dashboard](#visualization-looker-studio-dashboard)
 - [Final Results & Interpretation](#final-results-&-Interpretation)
 
@@ -224,7 +225,46 @@ Now that the data has been scripted, scheduled and ran successfully, a new item 
 <img width="1498" height="768" alt="Image" src="https://github.com/user-attachments/assets/c20f871c-84b8-4008-94be-1538e1821a39" />
 
 
-For setup instructions click [here](dbt/). 
+For setup instructions click [here](dbt/).
+
+
+## ML Strategy & Modeling Techniques
+
+This project uses a mix of classical and modern machine learning tools to classify FDA drug recalls by severity, specifically predicting whether a recall will be classified as **Class I**.
+
+### Feature Engineering
+We engineered a wide set of features from the original FDA data, combining:
+- **Date-based features** (e.g. recall duration, time to classification)
+- **Binary text indicators** from product descriptions and reasons for recall (e.g. "mentions injection", "mentions contamination")
+- **Geographic and location features** (e.g. U.S. vs foreign, top 5 states)
+- **One-hot encoded categorical variables** (e.g. country, recall status)
+- **TF-IDF vectors** for unstructured `cleaned_description` text (up to 600 terms)
+
+This hybrid feature set allows the model to incorporate both structured metadata and high-dimensional text information.
+
+### ⚙Model Development
+We tested several classifiers and selected **XGBoost** due to its performance, speed, and robustness to feature scaling and sparsity.
+
+#### Models Evaluated:
+- Logistic Regression (baseline)
+- Random Forest
+- **XGBoost** (final model)
+
+Each model was evaluated using 5-fold cross-validation and a held-out test set.
+
+### Feature Selection
+To reduce dimensionality and improve model clarity, we also explored:
+- **Lasso (L1) Logistic Regression** to identify the most predictive structured features
+- Visualizations of coefficient paths across regularization strengths
+- TF-IDF capping at 600 features to balance performance and interpretability
+
+### Final Model: XGBoost
+The final XGBoost model was trained on a combined dataset of structured features and sparse TF-IDF text features. Key benefits:
+- Handles missing values and unbalanced data
+- Automatically prioritizes important features
+- Performs well on tabular + text-hybrid inputs
+
+The resulting model was serialized with `joblib` and used in our Airflow DAG to generate batch predictions, which are then logged to BigQuery and visualized in Looker Studio.
 
 
 ## Visualization: Looker-Studio Dashboard ##
