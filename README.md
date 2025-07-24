@@ -242,7 +242,7 @@ We engineered a wide set of features from the original FDA data, combining:
 
 This hybrid feature set allows the model to incorporate both structured metadata and high-dimensional text information.
 
-### ⚙Model Development
+### Model Development
 We tested several classifiers and selected **XGBoost** due to its performance, speed, and robustness to feature scaling and sparsity.
 
 #### Models Evaluated:
