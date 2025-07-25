@@ -313,6 +313,13 @@ The current model offers a reliable foundation for:
 
 As we continue refining the pipeline, the dashboard will evolve to include more granular insights and time-based monitoring.
 
+### Real-World Impact
+This pipeline represents more than just a technical project — it’s a practical step toward improving drug safety oversight. By predicting which recalls are likely to be the most serious, it empowers agencies, healthcare providers, and supply chain managers to:
 
+- Prioritize high-risk cases earlier
+- Streamline regulatory workflows
+- Reduce time-to-action when dangerous products enter the market
+
+In the broader context of **global health**, this kind of model has the potential to improve patient safety, especially in systems where manual recall review is slow or fragmented. By surfacing risk proactively, it supports smarter intervention, better communication, and ultimately, helps protect the people most vulnerable to drug safety failures.
 
 
